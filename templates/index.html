@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="upper-bar">
+            <h1>Our store</h1>
+            <!-- timer flask -->
+        </div>
+        <div class="nav-area">
+            <div class="search-area">
+                <form action="/search_products" method="get">
+                    <input type="text" name="note_to_find" id="note_to_find" placeholder="Search products" >
+                    <button type="submit" id="submitButton">Search</button>
+                </form> 
+            </div>
+            <nav>   
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Products</li>
+                    <li>Contact Us</li>
+                </ul>
+            </nav>
+            <div class="cart-area">
+                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
+    <section>
+            <h2>Products</h2>
+            <div class="products-container">
+            </div>
+    </section>
+            <section id="about">
+            <h2>About Us</h2>
+            <p>Welcome to our online store. We offer a variety of products to suit your needs. Browse our collection and enjoy our offers!</p>
+    </section>
+        <footer>
+        <p>© 2024 Online Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
