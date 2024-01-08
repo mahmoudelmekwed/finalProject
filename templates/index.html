@@ -17,10 +17,10 @@
             <span id="seconds">{{seconds}} second</span>
         </div>
         <div class="nav-area">
-            <h1>Our store</h1>
+            <img src="static\images\logo.png" alt="Time Redfined">
             <div class="search-area">
                 <form action="/search_products" method="get">
-                    <input type="text" name="note_to_find" id="note_to_find" placeholder="Search products" >
+                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
                     <button type="submit" id="submitButton">Search</button>
                 </form> 
             </div>
@@ -40,6 +40,13 @@
     <section>
             <h2>Products</h2>
             <div class="products-container">
+                {% for product in products %}
+                    <li>
+                        <h2>{{ product.name }}</h2>
+                        <img src="{{ product.image }}" alt="{{ product.name }}" style="width:100px; height:auto;">
+                        <p>{{ product.description }}</p>
+                    </li>
+                {% endfor %}
             </div>
     </section>
             <section id="about">
@@ -49,5 +56,6 @@
         <footer>
         <p>© 2024 Online Store. All rights reserved.</p>
     </footer>
+    <script src="/static/main.js"></script>
 </body>
 </html>
