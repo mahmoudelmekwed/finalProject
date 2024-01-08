@@ -9,7 +9,7 @@ def home():
     offer_end_time = datetime(2024 , 3 , 30 , 23 , 59 , 59)
     now = datetime.now()
     time_remaining = offer_end_time - now
-    remaining_seconds = time_remaining.total_seconds()
+    remaining_seconds = int(time_remaining.total_seconds())
     days = remaining_seconds // (24*3600)
     remaining_seconds = remaining_seconds % (24*3600)
     hours = remaining_seconds // (3600)
