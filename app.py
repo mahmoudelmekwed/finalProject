@@ -1,6 +1,6 @@
 import flask
 import json
-from flask import render_template , jsonify , request
+from flask import render_template , jsonify , request , url_for
 from datetime import datetime
 
 
@@ -59,3 +59,17 @@ def home():
 # def get_products():
 #     products = load_products()
 #     return render_template("index.html", products=products)
+
+@app.route('/product/<product_id>')
+def product_detail(product_id):
+    products = load_products()
+    product = None
+    for p in products:
+        if str(p['id']) == product_id:
+            product = p
+            break
+
+    if product:
+        return render_template('product_detail.html', product=product)
+    else:
+        return "Product not found"

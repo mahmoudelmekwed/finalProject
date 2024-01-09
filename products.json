@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "image":"https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "image":"static/images/Product1.png",
         "name": "Sample Product 1",
         "price": 19.99,
         "description": "This is a sample product",
@@ -9,8 +9,16 @@
     },
     {
         "id": 2,
-        "image":"https://www.freepik.com/free-psd/luxury-podium-product-presentation-3d-render_39123814.htm#query=product%20demo&position=4&from_view=keyword&track=ais&uuid=9efc84e6-0ded-4006-aba4-a7251b5ef19a",
+        "image":"static/images/product2.png",
         "name": "Sample Product 2",
+        "price": 29.99,
+        "description": "This is another sample product",
+        "stock": 150
+    },
+    {
+        "id": 3,
+        "image":"static/images/product3.png",
+        "name": "Sample Product 3",
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150

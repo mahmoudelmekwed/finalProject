@@ -38,14 +38,16 @@
         </div>
     </header>
     <section>
-            <h2>Products</h2>
+            <h2>Featured Products</h2>
             <div class="products-container">
                 {% for product in products %}
+                <a href="{{ url_for('product_detail', product_id=product.id) }}">
                     <li>
                         <h2>{{ product.name }}</h2>
-                        <img src="{{ product.image }}" alt="{{ product.name }}" style="width:100px; height:auto;">
+                        <img src="{{ product.image }}" alt="{{ product.name }}">
                         <p>{{ product.description }}</p>
                     </li>
+                </a>
                 {% endfor %}
             </div>
     </section>
