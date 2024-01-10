@@ -30,7 +30,7 @@
 
 
 .nav-area img {
-    height: 50px; /* Adjust based on your preference */
+    height: 50px;
     margin-right: 20px;
 }
 
@@ -109,15 +109,16 @@ nav ul li {
     background-color: #f9f9f9;
 }
 
-.products-container li:hover {
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-}
-
 .products-container img {
     height: 250px;
     width: 150px;
     object-fit: cover;
     margin-bottom: 10px;
+}
+
+.products-container img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
 }
 
 .products-container h2 {

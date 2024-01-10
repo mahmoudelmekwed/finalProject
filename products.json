@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "image":"static/images/Product1.png",
+        "image":"/static/images/Product1.png",
         "name": "Sample Product 1",
         "price": 19.99,
         "description": "This is a sample product",
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "image":"static/images/product2.png",
+        "image":"/static/images/product2.png",
         "name": "Sample Product 2",
         "price": 29.99,
         "description": "This is another sample product",
@@ -17,8 +17,40 @@
     },
     {
         "id": 3,
-        "image":"static/images/product3.png",
+        "image":"/static/images/product3.png",
         "name": "Sample Product 3",
+        "price": 29.99,
+        "description": "This is another sample product",
+        "stock": 150
+    },
+    {
+        "id": 4,
+        "image":"/static/images/product4.png",
+        "name": "Sample Product 4",
+        "price": 29.99,
+        "description": "This is another sample product",
+        "stock": 150
+    },
+    {
+        "id": 4,
+        "image":"/static/images/product4.png",
+        "name": "Sample Product 4",
+        "price": 29.99,
+        "description": "This is another sample product",
+        "stock": 150
+    },
+    {
+        "id": 4,
+        "image":"/static/images/product4.png",
+        "name": "Sample Product 4",
+        "price": 29.99,
+        "description": "This is another sample product",
+        "stock": 150
+    },
+    {
+        "id": 4,
+        "image":"/static/images/product4.png",
+        "name": "Sample Product 4",
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150
