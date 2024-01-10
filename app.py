@@ -1,10 +1,9 @@
-import flask
 import json
-from flask import render_template , jsonify , request , url_for
+from flask import Flask , render_template , jsonify , request
 from datetime import datetime
 
 
-app = flask.Flask("Online Store")
+app = Flask("Online Store")
 
 def load_products():
     file = open('products.json', 'r')
@@ -39,9 +38,9 @@ class Product:
             return "Stock updated successfully."
         except:
             return "Quantiy must be a number"
+        
 
-@app.route("/")
-def home():
+def time_to_offer():
     offer_end_time = datetime(2024 , 3 , 30 , 23 , 59 , 59)
     now = datetime.now()
     time_remaining = offer_end_time - now
@@ -52,6 +51,11 @@ def home():
     remaining_seconds = remaining_seconds % 3600
     minutes = remaining_seconds // 60
     seconds = remaining_seconds % 60
+    return days , hours , minutes , seconds
+
+@app.route("/")
+def home():
+    days , hours , minutes , seconds = time_to_offer()
     products = load_products()
     return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
 
@@ -62,6 +66,7 @@ def home():
 
 @app.route('/product/<product_id>')
 def product_detail(product_id):
+    days , hours , minutes , seconds = time_to_offer()
     products = load_products()
     product = None
     for p in products:
@@ -70,6 +75,19 @@ def product_detail(product_id):
             break
 
     if product:
-        return render_template('product_detail.html', product=product)
+        return render_template('product_detail.html', days =days , hours = hours , minutes = minutes , seconds = seconds , product=product)
     else:
         return "Product not found"
+    
+
+@app.route("/search")
+def search_products():
+    product_to_find = request.args.get("product_to_find")
+    product_to_find = product_to_find.lower()
+    products = load_products()
+    filtered_product = None
+    for p in products:
+        if str(p['name']).lower() == product_to_find:
+            filtered_product = p
+
+    return render_template("product_detail.html" , product = filtered_product)

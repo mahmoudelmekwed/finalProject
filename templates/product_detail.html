@@ -3,15 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>product Detail</title>
 </head>
 <body>
+    <header>
+        <div class="upper-bar">
+            Offer ends in:
+            <span id="days">{{days}} day</span>
+            <span id="hours">{{hours}} hour</span>
+            <span id="minutes">{{minutes}} minute</span>
+            <span id="seconds">{{seconds}} second</span>
+        </div>
+        <div class="nav-area">
+            <img src="/static/images/logo.png" alt="Time Redfined">
+            <div class="search-area">
+                <form action="/search" method="get">
+                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
+                    <button type="submit" id="submitButton">Search</button>
+                </form> 
+            </div>
+            <nav>   
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Products</li>
+                    <li>Contact Us</li>
+                </ul>
+            </nav>
+            <div class="cart-area">
+                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
     <h1>{{ product.name }}</h1>
-    <div class="products-container" >
-        <img src="{{ product.image }}" alt="{{ product.name }}">
-
-</div>
+        <div class="products-container" >
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+        </div>
     <p>{{ product.description }}</p>
 </body>
 </html>
