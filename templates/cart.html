@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-
+    <h1>Your Shopping Cart</h1>
+    <div id="product_id">
+        {% if cart_items  %}
+            {% for cart_item in cart_items  %}
+                <div class="cart-item">
+                    <h3>{{ cart_item.name }}</h3>
+                    <p>Price: {{ cart_item.price }}</p>
+                    <p>Quantity: {{ cart_item.quantity }}</p>                
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

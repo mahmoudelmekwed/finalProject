@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 8px 20px;
 }
 
 
@@ -49,9 +49,9 @@
 
 .search-area input[type="text"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: none;
-    border-radius: 3px 0 0 3px; 
+    border-radius: 3px 3px; 
 }
 
 .search-area button {
@@ -59,18 +59,20 @@
     background-color: #f90; 
     color: white;
     border: none;
-    border-radius: 0 3px 3px 0; 
+    border-radius:  3px 3px; 
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .search-area button:hover {
-    background-color: #e80; 
+    background-color: rgb(238, 162, 62); 
 }
 
 nav ul {
     list-style: none;
     display: flex;
     align-items: center;
+    margin: 10px;
 }
 
 nav ul li {

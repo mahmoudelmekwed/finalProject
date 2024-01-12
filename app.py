@@ -1,21 +1,13 @@
 import json
-from flask import Flask , render_template , jsonify , request
+from flask import Flask , render_template , request , session , url_for ,redirect
 from datetime import datetime
 
 
 app = Flask("Online Store")
 
-def load_products():
-    file = open('products.json', 'r')
-    products = json.load(file)
-    return products
-
-def save_products(products):
-    file = open('products.json', 'w')
-    json.dump(products, file)
 
 class Product:
-    def __init__(self , id , image ,  name , price , description , stock):
+    def __init__(self , id , image ,  name , price , description , stock , quantity):
         
         self.id = id
         self.image = image
@@ -23,13 +15,14 @@ class Product:
         self.price = price
         self.description = description
         self.stock = stock
+        self.quantity = quantity
 
     def discount(self , discount_percentage):
         self.price = self.price * (100 - discount_percentage) / 100
 
     def update_stock (self , quantity):
         try:
-            new_stock = self.stock + quantity
+            new_stock = self.stock - quantity
 
             if new_stock < 0:
                 return "Stock quantity can not be negative"
@@ -38,6 +31,29 @@ class Product:
             return "Stock updated successfully."
         except:
             return "Quantiy must be a number"
+
+# def load_products(filename):
+#     file = open(filename, 'r')
+#     products = json.load(file)
+#     return products
+
+def load_products(filename):
+    file = open(filename, 'r')
+    products_data = json.load(file)
+    file.close()
+    products = []
+    for p in products_data:
+        product = Product(p['id'], p['image'], p['name'], p['price'], p['description'], p['stock'], p['quantity'])
+        products.append(product)
+
+    return products
+
+
+def save_products(cart):
+    file = open('cart.json', 'w')
+    json.dump(cart, file)
+
+
         
 
 def time_to_offer():
@@ -56,7 +72,7 @@ def time_to_offer():
 @app.route("/")
 def home():
     days , hours , minutes , seconds = time_to_offer()
-    products = load_products()
+    products = load_products("products.json")
     return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
 
 # @app.route("/products")
@@ -67,10 +83,10 @@ def home():
 @app.route('/product/<product_id>')
 def product_detail(product_id):
     days , hours , minutes , seconds = time_to_offer()
-    products = load_products()
+    products = load_products("products.json")
     product = None
     for p in products:
-        if str(p['id']) == product_id:
+        if p.id == product_id:
             product = p
             break
 
@@ -82,12 +98,65 @@ def product_detail(product_id):
 
 @app.route("/search")
 def search_products():
+    days , hours , minutes , seconds = time_to_offer()
     product_to_find = request.args.get("product_to_find")
     product_to_find = product_to_find.lower()
-    products = load_products()
+    products = load_products("products.json")
     filtered_product = None
     for p in products:
-        if str(p['name']).lower() == product_to_find:
+        if p.name.lower() == product_to_find:
             filtered_product = p
+    if (filtered_product):
+        return render_template("product_detail.html" , product = filtered_product , days =days , hours = hours , minutes = minutes , seconds = seconds)
+    else:
+        return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
 
-    return render_template("product_detail.html" , product = filtered_product)
+@app.route("/add-to-cart/<product_id>")
+def add_to_cart(product_id):
+    try:
+        file = open('cart.json', 'r')
+        cart = json.load(file)
+        file.close()
+    except:
+        cart = {"items": []}
+
+    try:
+        products = load_products("products.json")
+        product = None
+        for p in products:
+            if str(p.id) == product_id:
+                product = p
+                break
+
+        for item in cart['items']:
+            if item["id"] == product_id:
+                item['quantity'] += 1
+                break
+
+        else:
+            cart['items'].append({
+                'id': product.id, 
+                'name': product.name, 
+                'price': product.price, 
+                'quantity': 1
+            })
+
+        # file = open('cart.json', 'w')
+        # json.dump(cart, file)
+        # file.close()
+        save_products(cart)
+
+    except:
+        return "An error occurred"
+
+    return redirect(url_for("home"))
+
+
+
+@app.route('/cart')
+def show_cart():
+    file = open('cart.json', 'r')
+    cart = json.load(file)
+    file.close()
+
+    return render_template('cart.html', cart_items=cart['items'])
