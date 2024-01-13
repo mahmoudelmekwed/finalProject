@@ -17,20 +17,8 @@ class Product:
         self.stock = stock
         self.quantity = quantity
 
-    def discount(self , discount_percentage):
-        self.price = self.price * (100 - discount_percentage) / 100
-
-    def update_stock (self , quantity):
-        try:
-            new_stock = self.stock - quantity
-
-            if new_stock < 0:
-                return "Stock quantity can not be negative"
-            
-            self.stock = new_stock 
-            return "Stock updated successfully."
-        except:
-            return "Quantiy must be a number"
+    def total_price(self):
+        return self.price * self.quantity
 
 # def load_products(filename):
 #     file = open(filename, 'r')
@@ -140,8 +128,9 @@ def add_to_cart(product_id):
         else:
             cart['items'].append({
                 'id': product.id, 
-                'name': product.name, 
-                'price': product.price, 
+                'name': product.name,
+                'image': product.image , 
+                'price': product.total_price(), 
                 'quantity': selected_quantity
             })
 

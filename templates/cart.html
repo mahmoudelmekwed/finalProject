@@ -12,6 +12,7 @@
             {% for cart_item in cart_items  %}
                 <div class="cart-item">
                     <h3>{{ cart_item.name }}</h3>
+                    <img src="{{ cart_item.image }}" alt="{{ cart_item.name }}">
                     <p>Price: {{ cart_item.price }}</p>
                     <p>Quantity: {{ cart_item.quantity }}</p>                
                 </div>
