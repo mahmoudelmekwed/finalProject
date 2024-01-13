@@ -6,7 +6,7 @@
         "price": 19.99,
         "description": "This is a sample product",
         "stock": 100,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 4,
@@ -42,7 +42,7 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 4,
@@ -51,7 +51,7 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     },
     {
         "id": 4,
@@ -60,6 +60,6 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
-        "quantity":50
+        "quantity":1
     }
 ]

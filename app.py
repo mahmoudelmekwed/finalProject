@@ -86,7 +86,7 @@ def product_detail(product_id):
     products = load_products("products.json")
     product = None
     for p in products:
-        if p.id == product_id:
+        if str(p.id) == product_id:
             product = p
             break
 
@@ -111,6 +111,7 @@ def search_products():
     else:
         return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
 
+
 @app.route("/add-to-cart/<product_id>")
 def add_to_cart(product_id):
     try:
@@ -129,9 +130,10 @@ def add_to_cart(product_id):
                 break
 
         for item in cart['items']:
-            if item["id"] == product_id:
+            if str(item['id']) == product_id:
                 item['quantity'] += 1
                 break
+                
 
         else:
             cart['items'].append({
@@ -149,7 +151,7 @@ def add_to_cart(product_id):
     except:
         return "An error occurred"
 
-    return redirect(url_for("home"))
+    return redirect(url_for("show_cart"))
 
 
 

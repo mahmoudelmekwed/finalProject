@@ -41,9 +41,6 @@
             <img src="{{ product.image }}" alt="{{ product.name }}">
         </div>
     <p>{{ product.description }}</p>
-    <form action="/add-to-cart" method="get">
-        <input type="hidden" name="product_id" value="{{ product.id }}">
-        <button type="submit">Add to Cart</button>
-    </form>
+    <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
 </body>
 </html>
