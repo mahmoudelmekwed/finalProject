@@ -112,7 +112,7 @@ def search_products():
         return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
 
 
-@app.route("/add-to-cart/<product_id>")
+@app.route("/add-to-cart/<product_id>", methods=['POST'])
 def add_to_cart(product_id):
     try:
         file = open('cart.json', 'r')
@@ -129,9 +129,11 @@ def add_to_cart(product_id):
                 product = p
                 break
 
+        selected_quantity = int(request.form.get("quantity"))
+
         for item in cart['items']:
             if str(item['id']) == product_id:
-                item['quantity'] += 1
+                item['quantity'] += selected_quantity
                 break
                 
 
@@ -140,12 +142,9 @@ def add_to_cart(product_id):
                 'id': product.id, 
                 'name': product.name, 
                 'price': product.price, 
-                'quantity': 1
+                'quantity': selected_quantity
             })
 
-        # file = open('cart.json', 'w')
-        # json.dump(cart, file)
-        # file.close()
         save_products(cart)
 
     except:
