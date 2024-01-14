@@ -46,7 +46,7 @@
                             <img src="{{ product.image }}" alt="{{ product.name }}">
                         </a>
                         <p>{{ product.description }}</p>
-                        <p id="price-{{ product.id }}">{{ product.price }}</p>
+                        <p id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">Total price:{{ product.price }}</p>
                         <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
                             <label for="quantity-{{ product.id }}">Quantity:</label>
                             <select name="quantity" id="quantity-{{ product.id }}" onchange="updateTotalPrice('{{ product.id }}')" >

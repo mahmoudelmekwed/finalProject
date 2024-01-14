@@ -36,7 +36,7 @@
         "quantity":1
     },
     {
-        "id": 4,
+        "id": 5,
         "image":"/static/images/product4.png",
         "name": "Sample Product 4",
         "price": 29.99,
@@ -45,7 +45,7 @@
         "quantity":1
     },
     {
-        "id": 4,
+        "id": 6,
         "image":"/static/images/product4.png",
         "name": "Sample Product 4",
         "price": 29.99,
@@ -54,7 +54,7 @@
         "quantity":1
     },
     {
-        "id": 4,
+        "id": 7,
         "image":"/static/images/product4.png",
         "name": "Sample Product 4",
         "price": 29.99,
