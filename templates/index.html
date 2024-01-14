@@ -49,7 +49,7 @@
                         <p id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">Total price:{{ product.price }}</p>
                         <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
                             <label for="quantity-{{ product.id }}">Quantity:</label>
-                            <select name="quantity" id="quantity-{{ product.id }}" onchange="onChangeQuantity('{{ product.id }}')" >
+                            <select name="quantity" id="quantity-{{ product.id }}" onchange="updateTotalPrice('{{ product.id }}')" >
                                 {% for qty in range (1 , 11) %}
                                     <option value="{{ qty }}">{{ qty }}</option>
                                 {% endfor %}
