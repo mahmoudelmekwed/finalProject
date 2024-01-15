@@ -40,8 +40,7 @@ def load_products(filename):
 def save_products(cart):
     file = open('cart.json', 'w')
     json.dump(cart, file)
-
-
+    file.close()
         
 
 def time_to_offer():
@@ -121,10 +120,9 @@ def add_to_cart(product_id):
 
         for item in cart['items']:
             if str(item['id']) == product_id:
-                item['quantity'] += selected_quantity
+                item['quantity'] = selected_quantity
                 break
                 
-
         else:
             cart['items'].append({
                 'id': product.id, 
@@ -141,7 +139,27 @@ def add_to_cart(product_id):
 
     return redirect(url_for("show_cart"))
 
+@app.route("/remove-from-cart/<product_id>" , methods=["POST"])
+def remove_from_cart(product_id):
+    try:
+        file = open('cart.json', 'r')
+        cart = json.load(file)
+        file.close()
 
+        updated_cart_items = []
+
+        for item in cart['items']:
+            if str(item['id']) != product_id:
+                updated_cart_items.append(item)
+
+        cart['items'] = updated_cart_items
+
+        save_products(cart)
+
+    except:
+        return "An error occurred"
+
+    return redirect(url_for("show_cart"))
 
 @app.route('/cart')
 def show_cart():
