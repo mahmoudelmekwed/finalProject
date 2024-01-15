@@ -117,10 +117,12 @@ def add_to_cart(product_id):
                 break
 
         selected_quantity = int(request.form.get("quantity"))
+        product.quantity = selected_quantity
 
         for item in cart['items']:
             if str(item['id']) == product_id:
                 item['quantity'] = selected_quantity
+                item['price'] = product.total_price()
                 break
                 
         else:
