@@ -89,15 +89,13 @@ def search_products():
     product_to_find = request.args.get("product_to_find")
     product_to_find = product_to_find.lower()
     products = load_products("products.json")
-    filtered_product = None
+    filtered_products = []
     for p in products:
-        if p.name.lower() == product_to_find:
-            filtered_product = p
-    if (filtered_product):
-        return render_template("product_detail.html" , product = filtered_product , days =days , hours = hours , minutes = minutes , seconds = seconds)
-    else:
-        return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
+        if product_to_find in p.name.lower():
+            filtered_products.append(p)
+    
 
+    return render_template("search.html" , products = filtered_products , days =days , hours = hours , minutes = minutes , seconds = seconds , product_to_find = product_to_find)
 
 @app.route("/add-to-cart/<product_id>", methods=['POST'])
 def add_to_cart(product_id):
