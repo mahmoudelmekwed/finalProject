@@ -1,5 +1,5 @@
 import json
-from flask import Flask , render_template , request , session , url_for ,redirect
+from flask import Flask , render_template , request , url_for ,redirect
 from datetime import datetime
 
 
@@ -20,10 +20,6 @@ class Product:
     def total_price(self):
         return self.price * self.quantity
 
-# def load_products(filename):
-#     file = open(filename, 'r')
-#     products = json.load(file)
-#     return products
 
 def load_products(filename):
     file = open(filename, 'r')
@@ -161,10 +157,18 @@ def remove_from_cart(product_id):
 
     return redirect(url_for("show_cart"))
 
+def calculate_cart_total(cart):
+    total = 0
+    for item in cart['items']:
+        total += item['price']
+    return total
+
 @app.route('/cart')
 def show_cart():
     file = open('cart.json', 'r')
     cart = json.load(file)
     file.close()
 
-    return render_template('cart.html', cart_items=cart['items'])
+    total_price = calculate_cart_total(cart)
+
+    return render_template('cart.html', cart_items=cart['items'] , total_price = total_price)
