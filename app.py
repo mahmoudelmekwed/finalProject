@@ -1,9 +1,10 @@
 import json
-from flask import Flask , render_template , request , url_for ,redirect
-from datetime import datetime
+from flask import Flask , render_template , request, session , url_for ,redirect
+import secrets
 
 
 app = Flask("Online Store")
+app.secret_key = secrets.token_hex(16)
 
 
 class Product:
@@ -19,6 +20,14 @@ class Product:
 
     def total_price(self):
         return self.price * self.quantity
+    
+class User:
+    def __init__(self, username , password , address, payment_method , payment_details):
+        self.username = username
+        self.password = password
+        self.address = address
+        self.payment_method = payment_method
+        self.payment_details = payment_details
 
 
 def load_products(filename):
@@ -37,35 +46,14 @@ def save_products(cart):
     file = open('cart.json', 'w')
     json.dump(cart, file)
     file.close()
-        
-
-def time_to_offer():
-    offer_end_time = datetime(2024 , 3 , 30 , 23 , 59 , 59)
-    now = datetime.now()
-    time_remaining = offer_end_time - now
-    remaining_seconds = int(time_remaining.total_seconds())
-    days = remaining_seconds // (24*3600)
-    remaining_seconds = remaining_seconds % (24*3600)
-    hours = remaining_seconds // (3600)
-    remaining_seconds = remaining_seconds % 3600
-    minutes = remaining_seconds // 60
-    seconds = remaining_seconds % 60
-    return days , hours , minutes , seconds
 
 @app.route("/")
 def home():
-    days , hours , minutes , seconds = time_to_offer()
     products = load_products("products.json")
-    return render_template("index.html" , days =days , hours = hours , minutes = minutes , seconds = seconds , products=products)
-
-# @app.route("/products")
-# def get_products():
-#     products = load_products()
-#     return render_template("index.html", products=products)
+    return render_template("index.html" , products=products)
 
 @app.route('/product/<product_id>')
 def product_detail(product_id):
-    days , hours , minutes , seconds = time_to_offer()
     products = load_products("products.json")
     product = None
     for p in products:
@@ -74,14 +62,13 @@ def product_detail(product_id):
             break
 
     if product:
-        return render_template('product_detail.html', days =days , hours = hours , minutes = minutes , seconds = seconds , product=product)
+        return render_template('product_detail.html', product=product)
     else:
         return "Product not found"
     
 
 @app.route("/search")
 def search_products():
-    days , hours , minutes , seconds = time_to_offer()
     product_to_find = request.args.get("product_to_find")
     product_to_find = product_to_find.lower()
     products = load_products("products.json")
@@ -91,7 +78,7 @@ def search_products():
             filtered_products.append(p)
     
 
-    return render_template("search.html" , products = filtered_products , days =days , hours = hours , minutes = minutes , seconds = seconds , product_to_find = product_to_find)
+    return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
 
 @app.route("/add-to-cart/<product_id>", methods=['POST'])
 def add_to_cart(product_id):
@@ -172,3 +159,91 @@ def show_cart():
     total_price = calculate_cart_total(cart)
 
     return render_template('cart.html', cart_items=cart['items'] , total_price = total_price)
+
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']  
+#         address = request.form['address']
+#         payment_method = request.form['payment_method']
+
+
+#         # payment_details = {}
+#         # if payment_method == 'credit_card':
+#         #     payment_details['card_number'] = request.form['card_number']
+#         #     payment_details['expiry_date'] = request.form['expiry_date']
+#         #     payment_details['cvv'] = request.form['cvv']
+
+#     return render_template('register.html')
+
+def save_user(user):
+    try:
+        with open('users.json', 'r') as file:
+            users = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        users = []
+
+    user_data = {
+        'username': user.username,
+        'password': user.password,
+        'address': user.address,
+        'payment_method': user.payment_method,
+        'payment_details': user.payment_details
+    }
+
+    users.append(user_data)
+
+    with open('users.json', 'w') as file:
+        json.dump(users, file)
+
+def retrieve_user(username):
+    try:
+        with open('users.json', 'r') as file:
+            users = json.load(file)
+            for user_data in users:
+                if user_data['username'] == username:
+                    return User(
+                        username=user_data['username'], 
+                        password=user_data['password'],
+                        address=user_data['address'], 
+                        payment_method=user_data['payment_method'], 
+                        payment_details=user_data['payment_details']
+                    )
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    return None
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password'] 
+        address = request.form['address']
+        payment_method = request.form['payment_method']
+        payment_details = request.form['payment_details']
+
+        new_user = User(username, password, address, payment_method, payment_details)
+        save_user(new_user)
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']  
+        user = retrieve_user(username)
+
+        if user and user.password == password:
+            session['username'] = username
+            return redirect(url_for('show_cart'))
+        else:
+            pass
+    return render_template('login.html')
+
+
+
+

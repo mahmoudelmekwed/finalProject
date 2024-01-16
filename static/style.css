@@ -107,14 +107,14 @@ nav ul li {
     margin: 30px;
     padding: 10px 20px;
     width: 250px;
-    height: 380px;
     text-align: center;
     background-color: #f9f9f9;
+    border-radius: 4px;
 }
 
 .products-container li:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.4);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
 }
 
 .products-container img {
@@ -137,4 +137,41 @@ nav ul li {
 .products-container p {
     font-size: 0.9em;
     line-height: 1.4;
+}
+
+.products-container .price {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.products-container .price span{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.products-container form label{
+    font-size: 14px;
+}
+
+.products-container form select {
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.products-container .add-to-cart {
+    display: block;
+    padding: 8px 16px;
+    background-color: #f90; 
+    color: white;
+    border: none;
+    border-radius:  3px 3px; 
+    cursor: pointer;
+    margin: 12px auto 6px;
+}
+
+
+.products-container .add-to-cart:hover {
+background-color: rgb(238, 162, 62); 
 }
