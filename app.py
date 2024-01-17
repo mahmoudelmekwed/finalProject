@@ -82,12 +82,18 @@ def search_products():
 
 @app.route("/add-to-cart/<product_id>", methods=['POST'])
 def add_to_cart(product_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    username = session['username']
     try:
         file = open('cart.json', 'r')
         cart = json.load(file)
         file.close()
     except:
-        cart = {"items": []}
+        cart = {}
+
+    user_cart = cart.get(username, {"items": []})
 
     try:
         products = load_products("products.json")
@@ -96,24 +102,27 @@ def add_to_cart(product_id):
             if str(p.id) == product_id:
                 product = p
                 break
+    
+        if product:
+            selected_quantity = int(request.form.get("quantity"))
+            product.quantity = selected_quantity
 
-        selected_quantity = int(request.form.get("quantity"))
-        product.quantity = selected_quantity
-
-        for item in cart['items']:
+        for item in user_cart['items']:
             if str(item['id']) == product_id:
                 item['quantity'] = selected_quantity
                 item['price'] = product.total_price()
                 break
                 
         else:
-            cart['items'].append({
+            user_cart['items'].append({
                 'id': product.id, 
                 'name': product.name,
                 'image': product.image , 
                 'price': product.total_price(), 
                 'quantity': selected_quantity
             })
+
+        cart[username] = user_cart
 
         save_products(cart)
 
@@ -124,18 +133,25 @@ def add_to_cart(product_id):
 
 @app.route("/remove-from-cart/<product_id>" , methods=["POST"])
 def remove_from_cart(product_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    username = session['username']
     try:
         file = open('cart.json', 'r')
         cart = json.load(file)
         file.close()
 
+        user_cart = cart.get(username, {"items": []})
+
         updated_cart_items = []
 
-        for item in cart['items']:
+        for item in user_cart['items']:
             if str(item['id']) != product_id:
                 updated_cart_items.append(item)
 
-        cart['items'] = updated_cart_items
+        user_cart['items'] = updated_cart_items
+        cart[username] = user_cart
 
         save_products(cart)
 
@@ -152,13 +168,20 @@ def calculate_cart_total(cart):
 
 @app.route('/cart')
 def show_cart():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    username = session['username']
+
     file = open('cart.json', 'r')
     cart = json.load(file)
     file.close()
+    
+    user_cart = cart.get(username, {"items": []})
 
-    total_price = calculate_cart_total(cart)
+    total_price = calculate_cart_total(user_cart)
 
-    return render_template('cart.html', cart_items=cart['items'] , total_price = total_price)
+    return render_template('cart.html', cart_items=user_cart['items'] , total_price = total_price)
 
 
 # @app.route('/register', methods=['GET', 'POST'])
