@@ -267,6 +267,11 @@ def login():
             pass
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
 
 
 
