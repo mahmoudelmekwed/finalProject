@@ -1,5 +1,5 @@
 import json
-from flask import Flask , render_template , request, session , url_for ,redirect
+from flask import Flask, flash , render_template , request, session , url_for ,redirect
 import secrets
 
 
@@ -22,9 +22,10 @@ class Product:
         return round(self.price * self.quantity , 2 ) 
     
 class User:
-    def __init__(self, username , password , address, payment_method , payment_details):
+    def __init__(self, username , password , email , address, payment_method , payment_details):
         self.username = username
         self.password = password
+        self.email = email
         self.address = address
         self.payment_method = payment_method
         self.payment_details = payment_details
@@ -185,23 +186,6 @@ def show_cart():
     return render_template('cart.html', cart_items=user_cart['items'] , total_price = total_price)
 
 
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']  
-#         address = request.form['address']
-#         payment_method = request.form['payment_method']
-
-
-#         # payment_details = {}
-#         # if payment_method == 'credit_card':
-#         #     payment_details['card_number'] = request.form['card_number']
-#         #     payment_details['expiry_date'] = request.form['expiry_date']
-#         #     payment_details['cvv'] = request.form['cvv']
-
-#     return render_template('register.html')
-
 def save_user(user):
     try:
         with open('users.json', 'r') as file:
@@ -212,6 +196,7 @@ def save_user(user):
     user_data = {
         'username': user.username,
         'password': user.password,
+        'email' : user.email ,
         'address': user.address,
         'payment_method': user.payment_method,
         'payment_details': user.payment_details
@@ -222,15 +207,16 @@ def save_user(user):
     with open('users.json', 'w') as file:
         json.dump(users, file)
 
-def retrieve_user(username):
+def retrieve_user(identifier):
     try:
         with open('users.json', 'r') as file:
             users = json.load(file)
             for user_data in users:
-                if user_data['username'] == username:
+                if user_data['username'] == identifier or user_data['email'] == identifier:
                     return User(
                         username=user_data['username'], 
                         password=user_data['password'],
+                        email =user_data['email'],
                         address=user_data['address'], 
                         payment_method=user_data['payment_method'], 
                         payment_details=user_data['payment_details']
@@ -244,11 +230,16 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password'] 
+        email = request.form['email'] 
         address = request.form['address']
         payment_method = request.form['payment_method']
         payment_details = request.form['payment_details']
 
-        new_user = User(username, password, address, payment_method, payment_details)
+        if retrieve_user(email):
+            flash('Email already exists.')
+            return redirect(url_for('register'))
+
+        new_user = User(username, password, email , address, payment_method, payment_details)
         save_user(new_user)
         return redirect(url_for('login'))
     return render_template('register.html')
@@ -257,12 +248,12 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        identifier = request.form['identifier']
         password = request.form['password']  
-        user = retrieve_user(username)
+        user = retrieve_user(identifier)
 
         if user and user.password == password:
-            session['username'] = username
+            session['username'] = user.username
             return redirect(url_for('show_cart'))
         else:
             pass

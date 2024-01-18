@@ -8,7 +8,7 @@ function updateTotalPrice(productId) {
 
 
 function checkForUpdates() {
-    let productIds = [1,2,3,4,5,6,7,8,9]; 
+    let productIds = [1,2,3,4,5,6,7,8,9,10,11,12]; 
     productIds.forEach(function(productId) {
         let savedQuantity = localStorage.getItem('quantity-' + productId);
         let quantityElement = document.getElementById('quantity-' + productId);
@@ -23,3 +23,4 @@ document.addEventListener('DOMContentLoaded', function() {
     checkForUpdates();
     setInterval(checkForUpdates, 1000); 
 });
+
