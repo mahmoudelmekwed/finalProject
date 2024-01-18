@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<form action="/register" method="post">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="email" name="email" placeholder="email" required>
+<form action="/register" method="post" id="registerForm">
+    <input type="text" name="username" placeholder="Enter your user name or email" required>
+    <input type="password" name="password" placeholder="Password" id="password" required>
+    <div id="passwordError" style="color: red;"></div>
+    <input type="email" name="email" placeholder="email" id="emailField" required>
+    <div id="emailError" style="color: red;"></div>
     <input type="text" name="address" placeholder="Address">
     <input type="text" name="payment_method" placeholder="Payment Method">
     <input type="text" name="payment_details" placeholder="Payment Details">
     <button type="submit">Register</button>
 </form>
+<script src="/static/main.js"></script>
 </body>
 </html>

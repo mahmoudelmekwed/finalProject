@@ -1,5 +1,5 @@
 import json
-from flask import Flask, flash , render_template , request, session , url_for ,redirect
+from flask import Flask, jsonify, render_template , request, session , url_for ,redirect
 import secrets
 
 
@@ -231,13 +231,11 @@ def register():
         username = request.form['username']
         password = request.form['password'] 
         email = request.form['email'] 
+        # if retrieve_user(email):
+        #     return redirect(url_for('register'))
         address = request.form['address']
         payment_method = request.form['payment_method']
         payment_details = request.form['payment_details']
-
-        if retrieve_user(email):
-            flash('Email already exists.')
-            return redirect(url_for('register'))
 
         new_user = User(username, password, email , address, payment_method, payment_details)
         save_user(new_user)
@@ -263,6 +261,13 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
+
+@app.route('/check-email', methods=['POST'])
+def check_email():
+    email = request.json['email']
+    if retrieve_user(email):
+        return jsonify({"exists": True})
+    return jsonify({"exists": False})
 
 
 
