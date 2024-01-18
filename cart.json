@@ -1,1 +1,1 @@
-{"mahmoud": {"items": [{"id": 3, "name": "Sample Product 3", "image": "/static/images/product3.png", "price": 89.97, "quantity": 3}]}}
+{"mahmoud": {"items": [{"id": 1, "name": "Sample Product 1", "image": "/static/images/Product1.png", "price": 79.96, "description": "This is a sample product", "quantity": 4}, {"id": 3, "name": "Sample Product 3", "image": "/static/images/product3.png", "price": 29.99, "description": "This is another sample product", "quantity": 1}]}}

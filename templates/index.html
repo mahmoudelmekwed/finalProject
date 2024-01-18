@@ -9,15 +9,10 @@
 </head>
 <body>
     <header>
-        <div class="upper-bar">
-            Offer ends in:
-            <span id="days">{{days}} day</span>
-            <span id="hours">{{hours}} hour</span>
-            <span id="minutes">{{minutes}} minute</span>
-            <span id="seconds">{{seconds}} second</span>
-        </div>
         <div class="nav-area">
-            <img src="static\images\logo.png" alt="Time Redfined">
+            <a href="/">
+                <img src="static\images\logo.png" alt="Time Redfined">
+            </a>
             <div class="search-area">
                 <form action="/search" method="get">
                     <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
@@ -28,7 +23,7 @@
                 <ul>
                     <li><a href="register">Sign up</a></li>
                     <li><a href="login">Log in</a></li>
-                    <li>Products</li>
+                    <li><a href="logout">log out</a></li>
                     <li>Contact Us</li>
                 </ul>
             </nav>
@@ -46,7 +41,7 @@
                         </a>
                         <h2>{{ product.name }}</h2>
                         <p>{{ product.description }}</p>
-                        <p id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}" class="price">Total price: {{ product.price }}</p>
+                        <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span></p>
                         <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
                             <label for="quantity-{{ product.id }}">Quantity:</label>
                             <select name="quantity" id="quantity-{{ product.id }}" onchange="updateTotalPrice('{{ product.id }}')" >

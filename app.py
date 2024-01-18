@@ -19,7 +19,7 @@ class Product:
         self.quantity = quantity
 
     def total_price(self):
-        return self.price * self.quantity
+        return round(self.price * self.quantity , 2 ) 
     
 class User:
     def __init__(self, username , password , address, payment_method , payment_details):
@@ -118,7 +118,8 @@ def add_to_cart(product_id):
                 'id': product.id, 
                 'name': product.name,
                 'image': product.image , 
-                'price': product.total_price(), 
+                'price': product.total_price(),
+                'description' : product.description, 
                 'quantity': selected_quantity
             })
 
@@ -164,7 +165,7 @@ def calculate_cart_total(cart):
     total = 0
     for item in cart['items']:
         total += item['price']
-    return total
+    return round(total , 2 )
 
 @app.route('/cart')
 def show_cart():
@@ -270,7 +271,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 
 

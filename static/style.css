@@ -1,18 +1,3 @@
-.upper-bar {
-    background-color: #333; 
-    color: white; 
-    text-align: center; 
-    padding: 10px 0;
-    font-family: Arial, sans-serif; 
-}
-
-.upper-bar span {
-    margin: 0 5px; 
-    padding: 2px 5px; 
-    background-color: #555; 
-    border-radius: 3px;
-}
-
 * {
     margin: 0;
     padding: 0;

@@ -2,7 +2,7 @@ function updateTotalPrice(productId) {
     let pricePerUnit = parseFloat(document.getElementById('price-'+productId).getAttribute('data-price-per-unit'));
     let quantity = parseInt(document.getElementById('quantity-'+productId).value);
     let totalPrice = pricePerUnit * quantity;
-    document.getElementById('price-'+productId).innerText = 'Total price: ' + totalPrice.toFixed(2);
+    document.getElementById('price-'+productId).innerText = totalPrice.toFixed(2);
     localStorage.setItem('quantity-'+productId , quantity);
 }
 

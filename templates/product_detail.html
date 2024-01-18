@@ -8,15 +8,10 @@
 </head>
 <body>
     <header>
-        <div class="upper-bar">
-            Offer ends in:
-            <span id="days">{{days}} day</span>
-            <span id="hours">{{hours}} hour</span>
-            <span id="minutes">{{minutes}} minute</span>
-            <span id="seconds">{{seconds}} second</span>
-        </div>
         <div class="nav-area">
-            <img src="/static/images/logo.png" alt="Time Redfined">
+            <a href="/">
+                <img src="/static/images/logo.png" alt="Time Redfined">
+            </a>
             <div class="search-area">
                 <form action="/search" method="get">
                     <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
