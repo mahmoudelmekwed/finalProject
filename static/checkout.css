@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  .checkout-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  .billing-section, .summary-section {
+    width: 48%;
+  }
+  .summary-section {
+    text-align: right;
+  }
+  .payment-methods {
+    margin-top: 20px;
+  }
+  .payment-method {
+    margin-bottom: 10px;
+  }
+  .complete-checkout {
+    background-color: #f90; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius:  3px 3px; 
+    border: none;
+    cursor: pointer;
+  }
+
+  .complete-checkout:hover {
+    background-color: rgb(238, 162, 62); 
+}

@@ -62,8 +62,56 @@ nav ul {
 
 nav ul li {
     margin: 0 10px;
-    color: #000; 
+    color: #000;
+    cursor: pointer; 
 }
+
+nav .dropdown-menu{
+    position: relative;
+}
+
+nav .toggle-menu{
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toggle-menu.opened {
+    display: block;
+}
+
+.toggle-menu li {
+    padding: 8px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.toggle-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.toggle-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+/* nav .toggle-menu.opened{
+    display: flex;
+}
+
+nav .toggle-menu li{
+    padding: 10px;
+    display: inline-block;
+    margin: auto;
+
+} */
 
 
 .nav-area .cart-area a {

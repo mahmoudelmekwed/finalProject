@@ -78,7 +78,7 @@ def search_products():
         if product_to_find in p.name.lower():
             filtered_products.append(p)
     
-
+###################################################################
     return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
 
 @app.route("/add-to-cart/<product_id>", methods=['POST'])
@@ -162,6 +162,8 @@ def remove_from_cart(product_id):
 
     return redirect(url_for("show_cart"))
 
+###############################################################################################
+
 def calculate_cart_total(cart):
     total = 0
     for item in cart['items']:
@@ -182,9 +184,21 @@ def show_cart():
     user_cart = cart.get(username, {"items": []})
 
     total_price = calculate_cart_total(user_cart)
+    session['total_price'] = total_price
 
     return render_template('cart.html', cart_items=user_cart['items'] , total_price = total_price)
 
+#######################################################
+
+@app.route('/checkout')
+def checkout():
+
+    total_price = session.get('total_price' , 0)
+    return render_template('checkout.html' , total_price = total_price)
+
+
+
+###########################################################################################################################
 
 def save_user(user):
     try:
@@ -268,6 +282,10 @@ def check_email():
     if retrieve_user(email):
         return jsonify({"exists": True})
     return jsonify({"exists": False})
+
+
+######################################################
+
 
 
 
