@@ -1,23 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
 body {
     font-family: Arial, sans-serif;
   }
   .checkout-container {
+    padding: 20px;
+  }
+
+  .checkout-container h2 {
+    margin-bottom: 40px;
+  }
+
+  .checkout-row {
     display: flex;
     justify-content: space-between;
-    margin: 20px;
+    align-items: flex-start;
   }
-  .billing-section, .summary-section {
-    width: 48%;
+  .billing-section {
+    width: 57%;
   }
+
   .summary-section {
-    text-align: right;
+    width: 40%;
+    padding: 20px;
+    background: #e6e6e6;
+    border-radius: 4px;
   }
+
   .payment-methods {
-    margin-top: 20px;
+    width: 460px;
+    font-family: Arial, sans-serif;
   }
+
+  .payment-methods h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
   .payment-method {
+    margin-bottom: 15px;
+  }
+
+  .card-details {
+    background-color: #e6e6e6;
+    border: 1px solid #dcdcdc;
+    margin-top: 20px;
+    padding: 20px 50px;
+    border-radius: 4px;
+    display: none;
+  }
+
+  .field {
     margin-bottom: 10px;
   }
+  
+  .field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .field-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .field-group .field {
+    flex: 1;
+  }
+  
+  .field-group .expiry {
+    margin-right: 10px;
+  }
+  
+  .save-card {
+    margin-top: 10px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  input[type="radio"]:checked + label + .card-details {
+    display: block;
+  }
+
   .complete-checkout {
     background-color: #f90; 
     color: white;

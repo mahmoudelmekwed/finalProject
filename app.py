@@ -200,6 +200,15 @@ def checkout():
 
 ###########################################################################################################################
 
+@app.route('/confirmation')
+def confirmation():
+
+    total_price = session.get('total_price' , 0)
+    return render_template('confirmation.html' , total_price = total_price)
+
+
+
+
 def save_user(user):
     try:
         with open('users.json', 'r') as file:

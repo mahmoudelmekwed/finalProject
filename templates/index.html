@@ -21,14 +21,19 @@
             </div>
             <nav>   
                 <ul>
-                    <li><a href="register">Sign up</a></li>
-                    <li><a href="login">Log in</a></li>
-                    <li><a href="logout">log out</a></li>
-                    <li>Contact Us</li>
+                    <li>Home</li>
+                    <li class="dropdown-menu" id="dropdown-menu"><i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                        <ul class="toggle-menu closed" id="toggle-menu">
+                            <li><a href="register">Sign up</a></li>
+                            <li><a href="login">Log in</a></li>
+                            <li><a href="logout">log out</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li>Contact Us</li> -->
                 </ul>
             </nav>
             <div class="cart-area">
-                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">0</span>Cart</a>
             </div>
         </div>
     </header>
