@@ -69,7 +69,8 @@ def save_products(cart):
 @app.route("/")
 def home():
     products = load_products("products.json")
-    return render_template("index.html" , products=products)
+    total_quantity = session.get('total_quantity')
+    return render_template("index.html" , products=products , total_quantity=total_quantity)
 
 @app.route('/product/<product_id>')
 def product_detail(product_id):
@@ -201,6 +202,7 @@ def show_cart():
     total_quantity = user.calculate_cart_quantity()
 
     session['total_price'] = total_price
+    session['total_quantity'] = total_quantity
 
     return render_template('cart.html', cart_items=user.cart['items'] , total_price = total_price , total_quantity = total_quantity)
 
@@ -283,7 +285,7 @@ def login():
 
         if user and user.password == password:
             session['username'] = user.username
-            return redirect(url_for('show_cart'))
+            return redirect(url_for('home'))
         else:
             pass
     return render_template('login.html')
