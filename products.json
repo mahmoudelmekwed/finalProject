@@ -1,13 +1,5 @@
 [
-    {
-        "id": 1,
-        "image":"/static/images/Product1.png",
-        "name": "Sample Product 1",
-        "price": 19.99,
-        "description": "This is a sample product",
-        "stock": 100,
-        "quantity":1
-    },
+
     {
         "id": 2,
         "image":"/static/images/product2.png",
@@ -15,6 +7,15 @@
         "price": 29.99,
         "description": "This is another sample product",
         "stock": 150,
+        "quantity":1
+    },
+    {
+        "id": 1,
+        "image":"/static/images/Product1.png",
+        "name": "Sample Product 1",
+        "price": 19.99,
+        "description": "This is a sample product",
+        "stock": 100,
         "quantity":1
     },
     {

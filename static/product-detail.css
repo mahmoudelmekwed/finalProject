@@ -71,15 +71,6 @@ nav ul li:hover{
     color: #f90;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #000;
-}
-
-nav ul li a:hover{
-color: #f90;
-}
-
 nav .dropdown-menu{
     position: relative;
 }
@@ -150,7 +141,6 @@ nav .toggle-menu{
 }
 
 .nav-area .cart-area a:hover span{
-    /* color: white; */
     background-color: #444;
 }
 
@@ -158,80 +148,66 @@ nav .toggle-menu{
     margin-right: 5px;
 }
 
-.products-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0;
+.product-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
 }
 
-.products-container li {
-    list-style-type: none;
-    border: 1px solid #ddd;
-    margin: 30px;
-    padding: 10px 20px;
-    width: 250px;
+.product-name {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.product-image-container {
     text-align: center;
-    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: 350px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-form {
+    text-align: center;
+}
+
+.quantity-selector {
+    margin-bottom: 20px;
+}
+
+.quantity-dropdown {
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.add-to-cart-button {
+    background-color: #f90;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     border-radius: 4px;
 }
 
-.products-container li:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+.add-to-cart-button:hover {
+    background-color: rgb(238, 162, 62);
 }
-
-.products-container img {
-    height: 250px;
-    width: 150px;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.products-container h2 {
-    font-size: 1.2em;
-    margin: 5px 0;
-}
-
-.products-container p {
-    font-size: 0.9em;
-    line-height: 1.4;
-}
-
-.products-container .price {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-weight: bold;
-}
-
-.products-container .price span{
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.products-container form label{
-    font-size: 14px;
-}
-
-.products-container form select {
-    padding: 4px 8px;
-    border-radius: 2px;
-    font-size: 14px;
-}
-
-.products-container .add-to-cart {
-    display: block;
-    padding: 8px 16px;
-    background-color: #f90; 
-    color: white;
-    border: none;
-    border-radius:  3px 3px; 
-    cursor: pointer;
-    margin: 12px auto 6px;
-}
-
-
-.products-container .add-to-cart:hover {
-background-color: rgb(238, 162, 62); 
-}
-

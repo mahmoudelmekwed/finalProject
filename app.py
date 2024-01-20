@@ -80,9 +80,10 @@ def product_detail(product_id):
         if str(p.id) == product_id:
             product = p
             break
-
+    
+    total_quantity = session.get('total_quantity' , 0)
     if product:
-        return render_template('product_detail.html', product=product)
+        return render_template('product_detail.html', product=product , total_quantity=total_quantity)
     else:
         return "Product not found"
     
@@ -97,7 +98,7 @@ def search_products():
         if product_to_find in p.name.lower():
             filtered_products.append(p)
     
-        return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
+    return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
 
 ###################################################################
 
@@ -212,7 +213,8 @@ def show_cart():
 def checkout():
 
     total_price = session.get('total_price' , 0)
-    return render_template('checkout.html' , total_price = total_price)
+    total_quantity = session.get('total_quantity' , 0)
+    return render_template('checkout.html' , total_price = total_price , total_quantity = total_quantity)
 
 
 

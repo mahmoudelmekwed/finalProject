@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/static/cart.css">
 </head>
 <body>
@@ -20,15 +21,22 @@
             </div>
             <nav>   
                 <ul>
-                    <li><a href="register">Sign up</a></li>
-                    <li><a href="login">Log in</a></li>
-                    <li><a href="logout">log out</a></li>
-                    <li>Contact Us</li>
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown-menu" id="dropdown-menu"><i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                        <ul class="toggle-menu closed" id="toggle-menu">
+                            {% if 'username' not in session %}
+                            <li><a href="/login">Log in</a></li>
+                            <li><a href="/register">Sign up</a></li>
+                        {% else %}
+                            <li><a href="/logout">Log out</a></li>
+                        {% endif %}
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div class="cart-area">
-                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
+                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
+        </div>
         </div>
     </header>
     <h1 class="page-title">Shopping Cart</h1>
@@ -68,5 +76,6 @@
         {% endif %}
     </div>
     <script src="/static/cart.js"></script>
+    <script src="/static/main.js"></script>
 </body>
 </html>
