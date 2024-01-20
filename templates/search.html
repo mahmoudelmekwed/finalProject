@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="/static/search.css">
 </head>
 <body>
     <header>
@@ -39,7 +39,40 @@
             </div>
         </div>
     </header>
-    <section>
+    <section class="search-results">
+        <div class="products-container">
+            {% if products  %}
+                <ul class="product-list">
+                    {% for product in products %}
+                        <li class="product-item">
+                            <div class="search-item-details">
+                            <h2 class="product-name">{{ product.name }}</h2>
+                            <a href="{{ url_for('product_detail', product_id=product.id) }}" class="product-link">
+                                <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+                            </a>
+                            <p class="product-description">{{ product.description }}</p>
+                            <p class="product-price" id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">Total price: {{ product.price }}</p>
+                            </div>
+                            <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="add-to-cart-form">
+                                <div class="quantity-selector">
+                                    <label for="quantity-{{ product.id }}">Quantity:</label>
+                                    <select name="quantity" id="quantity-{{ product.id }}" class="quantity-dropdown" onchange="updateTotalPrice('{{ product.id }}')">
+                                        {% for qty in range (1 , 11) %}
+                                            <option value="{{ qty }}">{{ qty }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-results">{{product_to_find}} is not found</p>
+            {% endif %}
+        </div>
+    </section>    
+    <!-- <section>
         <div class="products-container">
             {% if products  %}
                 {% for product in products %}
@@ -65,7 +98,7 @@
                 <p>{{product_to_find}} is not found</p>
             {% endif %}
         </div>
-</section>
+</section> -->
 <script src="/static/main.js"></script>
 </body>
 </html>

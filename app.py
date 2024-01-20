@@ -97,8 +97,10 @@ def search_products():
     for p in products:
         if product_to_find in p.name.lower():
             filtered_products.append(p)
+
+    total_quantity = session.get('total_quantity' , 0)
     
-    return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
+    return render_template("search.html" , products = filtered_products , product_to_find = product_to_find , total_quantity=total_quantity)
 
 ###################################################################
 
