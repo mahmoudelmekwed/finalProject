@@ -22,13 +22,31 @@ class Product:
         return round(self.price * self.quantity , 2 ) 
     
 class User:
-    def __init__(self, username , password , email , address, payment_method , payment_details):
+    def __init__(self, username , password , email):
         self.username = username
         self.password = password
         self.email = email
-        self.address = address
-        self.payment_method = payment_method
-        self.payment_details = payment_details
+        self.cart = self.load_user_cart()
+
+    def load_user_cart(self):
+        try:
+            with open('cart.json', 'r') as file:
+                cart = json.load(file)
+            return cart.get(self.username, {"items": []})
+        except FileNotFoundError:
+            return {"items": []}
+        
+    def calculate_cart_total(self):
+        total = 0
+        for item in self.cart['items']:
+            total += item['price']
+        return round(total , 2 )
+
+    def calculate_cart_quantity(self):
+        total_quantity = 0
+        for item in self.cart['items']:
+            total_quantity += item['quantity']
+        return total_quantity
 
 
 def load_products(filename):
@@ -78,8 +96,9 @@ def search_products():
         if product_to_find in p.name.lower():
             filtered_products.append(p)
     
+        return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
+
 ###################################################################
-    return render_template("search.html" , products = filtered_products , product_to_find = product_to_find)
 
 @app.route("/add-to-cart/<product_id>", methods=['POST'])
 def add_to_cart(product_id):
@@ -164,29 +183,26 @@ def remove_from_cart(product_id):
 
 ###############################################################################################
 
-def calculate_cart_total(cart):
-    total = 0
-    for item in cart['items']:
-        total += item['price']
-    return round(total , 2 )
+
+
+############################################
 
 @app.route('/cart')
 def show_cart():
     if 'username' not in session:
         return redirect(url_for('login'))
 
-    username = session['username']
+    user = retrieve_user(session['username'])
 
-    file = open('cart.json', 'r')
-    cart = json.load(file)
-    file.close()
+    if not user:
+        return redirect(url_for('login'))
     
-    user_cart = cart.get(username, {"items": []})
+    total_price = user.calculate_cart_total()
+    total_quantity = user.calculate_cart_quantity()
 
-    total_price = calculate_cart_total(user_cart)
     session['total_price'] = total_price
 
-    return render_template('cart.html', cart_items=user_cart['items'] , total_price = total_price)
+    return render_template('cart.html', cart_items=user.cart['items'] , total_price = total_price , total_quantity = total_quantity)
 
 #######################################################
 
@@ -219,10 +235,7 @@ def save_user(user):
     user_data = {
         'username': user.username,
         'password': user.password,
-        'email' : user.email ,
-        'address': user.address,
-        'payment_method': user.payment_method,
-        'payment_details': user.payment_details
+        'email' : user.email
     }
 
     users.append(user_data)
@@ -239,10 +252,7 @@ def retrieve_user(identifier):
                     return User(
                         username=user_data['username'], 
                         password=user_data['password'],
-                        email =user_data['email'],
-                        address=user_data['address'], 
-                        payment_method=user_data['payment_method'], 
-                        payment_details=user_data['payment_details']
+                        email =user_data['email']
                     )
     except (FileNotFoundError, json.JSONDecodeError):
         pass
@@ -256,11 +266,8 @@ def register():
         email = request.form['email'] 
         # if retrieve_user(email):
         #     return redirect(url_for('register'))
-        address = request.form['address']
-        payment_method = request.form['payment_method']
-        payment_details = request.form['payment_details']
 
-        new_user = User(username, password, email , address, payment_method, payment_details)
+        new_user = User(username, password, email)
         save_user(new_user)
         return redirect(url_for('login'))
     return render_template('register.html')
@@ -272,6 +279,7 @@ def login():
         identifier = request.form['identifier']
         password = request.form['password']  
         user = retrieve_user(identifier)
+
 
         if user and user.password == password:
             session['username'] = user.username
