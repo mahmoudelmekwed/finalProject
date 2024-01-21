@@ -143,6 +143,7 @@ nav .toggle-menu{
   padding: 2px 4px;
   display: inline-block;
   background-color: #f90;
+  color: #000;
   border-radius: 50%;
   position: absolute;
   top: -12px;
@@ -175,6 +176,10 @@ nav .toggle-menu{
   width: 60%;
 }
 
+span{
+  color: red;
+}
+
 .billing-section form label,
 .billing-section form input {
   display: block;
@@ -205,6 +210,11 @@ input[type="radio"] {
 
 .payment-method {
   margin-bottom: 15px;
+}
+
+.inline-element {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .card-details {
@@ -271,6 +281,10 @@ input[type="radio"]:checked + label + .card-details {
 .summary-section p {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+#total-price{
+  color: #000;
 }
 
 .complete-checkout {
