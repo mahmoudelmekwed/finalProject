@@ -109,7 +109,7 @@
       <div class="summary-section">
         <h2>Summary</h2>
         <!-- Display total price -->
-        <p>Total: <span id="total-price">{{ total_price }}</span></p>
+        <p>Total: <span id="total-price">{{ total_price }}</span> USD</p>
         <!-- Form to complete checkout -->
         <form action="{{ url_for('confirmation') }}" method="post">
             <button class="complete-checkout" id="confirm">Complete Checkout</button>

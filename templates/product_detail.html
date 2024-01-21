@@ -57,7 +57,7 @@
         <!-- Product description -->
         <p class="product-description">{{ product.description }}</p>
         <!-- Product price -->
-        <p class="product-price" id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</p>
+        <p><span class="product-price" id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span> USD</p>
         <!-- Form to add product to cart -->
         <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="add-to-cart-form">
             <div class="quantity-selector">
@@ -72,6 +72,10 @@
             <button type="submit" class="add-to-cart-button">Add to Cart</button>
         </form>
     </section>
+    <footer>
+        <!-- Copyright notice -->
+        <p>© 2024 Online Store. All rights reserved.</p>
+    </footer>   
     <!-- JavaScript file linked for additional functionality -->
     <script src="/static/main.js"></script>
 </body>

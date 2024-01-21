@@ -245,4 +245,16 @@ nav .toggle-menu{
     background-color: rgb(238, 162, 62);
 }
 
+footer {
+    background-color: #e6e6e6; 
+    color: #333; 
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styling for paragraph and footer */
+
+footer p {
+    color: #000;
+}
 

@@ -307,31 +307,20 @@ nav .toggle-menu {
 /* Styling for the footer */
 
 footer {
-    background-color: #e6e6e6; 
-    color: #333; 
+    background-color: #e6e6e6;
+    color: #333;
     padding: 20px;
     text-align: center;
-}
-
-/* Styling for the "about" section within the footer */
-
-footer .about {
-    background-color: rgb(247, 205, 147); 
-    padding: 10px; 
-    margin: 10px 0; 
-}
-
-/* Styling for the header within the "about" section */
-
-footer .about h2 {
-    color: #fff; 
-}
-
-/* Styling for paragraphs within the "about" section and footer */
-
-footer .about p, footer p {
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+  }
+  
+  /* Styling for paragraphs in the footer */
+  footer p {
     color: #000;
-}
+  }
 
 
 

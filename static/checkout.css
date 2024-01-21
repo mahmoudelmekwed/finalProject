@@ -345,3 +345,4 @@ input[type="radio"]:checked + label + .card-details {
 .complete-checkout:hover {
   background-color: rgb(238, 162, 62);
 }
+

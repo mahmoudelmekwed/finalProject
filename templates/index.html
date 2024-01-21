@@ -58,9 +58,8 @@
                         <img src="{{ product.image }}" alt="{{ product.name }}">
                     </a>
                     <h2>{{ product.name }}</h2>
-                    <p>{{ product.description }}</p>
                     <!-- Display product price -->
-                    <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span></p>
+                    <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span> USD</p>
                     <!-- Form to add product to cart -->
                     <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
                         <label for="quantity-{{ product.id }}">Quantity:</label>
@@ -77,11 +76,6 @@
         </div>
     </section>
     <footer>
-        <!-- Footer with about us section -->
-        <div class="about">
-            <h2>About Us</h2>
-            <p>Welcome to our store. We offer a variety of watches to suit your needs. Browse our collection and enjoy our offers!</p>
-        </div>
         <!-- Copyright notice -->
         <p>© 2024 Online Store. All rights reserved.</p>
     </footer>
