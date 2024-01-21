@@ -47,6 +47,9 @@ class User:
         for item in self.cart['items']:
             total_quantity += item['quantity']
         return total_quantity
+    
+    def clear_cart(self):
+        self.cart['items'] = []
 
 
 def load_products(filename):
@@ -211,8 +214,13 @@ def show_cart():
 
 #######################################################
 
-@app.route('/checkout')
+@app.route('/checkout' , methods=['POST'])
 def checkout():
+
+    user = retrieve_user(session['username'])
+    if user:
+        user.clear_cart()
+        return redirect(url_for('confirmation'))
 
     total_price = session.get('total_price' , 0)
     total_quantity = session.get('total_quantity' , 0)

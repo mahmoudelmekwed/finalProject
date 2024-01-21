@@ -1,6 +1,5 @@
 document.getElementById('confirm').addEventListener('click', function() {
     storeName();
-    window.location.href = '/confirmation';
 });
 
 function storeName() {
