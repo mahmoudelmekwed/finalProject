@@ -94,7 +94,9 @@
         <div class="summary-section">
           <h2>Summary</h2>
           <p>Total: <span id="total-price">{{ total_price }}</span></p>
-          <button class="complete-checkout" id="confirm">Complete Checkout</button>
+          <form action="{{ url_for('confirmation') }}" method="post">
+              <button class="complete-checkout" id="confirm">Complete Checkout</button>
+          </form>
           <p>30-Day Money-Back Guarantee</p>
         </div>
         </div>

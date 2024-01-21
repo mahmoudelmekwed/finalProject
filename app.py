@@ -216,12 +216,14 @@ def show_cart():
 
 @app.route('/checkout' , methods=['POST'])
 def checkout():
-
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
     user = retrieve_user(session['username'])
-    if user:
-        user.clear_cart()
-        return redirect(url_for('confirmation'))
 
+    if not user:
+        return redirect(url_for('login'))    
+    
     total_price = session.get('total_price' , 0)
     total_quantity = session.get('total_quantity' , 0)
     return render_template('checkout.html' , total_price = total_price , total_quantity = total_quantity)
@@ -230,10 +232,20 @@ def checkout():
 
 ###########################################################################################################################
 
-@app.route('/confirmation')
+@app.route('/confirmation', methods=['POST'])
 def confirmation():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    user = retrieve_user(session['username'])
 
+    if not user:
+        return redirect(url_for('login'))    
+    
     total_price = session.get('total_price' , 0)
+
+    user.clear_cart()
+    save_products(user.cart)
     return render_template('confirmation.html' , total_price = total_price)
 
 
