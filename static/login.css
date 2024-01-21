@@ -1,51 +1,74 @@
+/* Styling for the entire webpage body */
+
 body {
-    font-family: Arial, sans-serif;
-    background: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+    font-family: Arial, sans-serif; /* Set the font family for the body text */
+    background: #fff; /* Set the background color to white */
+    padding: 20px; /* Add padding around the content */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 90vh; /* Set the height of the body to 90% of the viewport height */
 }
+
+/* Styling for the login form container */
+
 .login-form {
-    background: #f9f9f9;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 100%;
+    background: #f9f9f9; /* Set the background color for the login form */
+    padding: 40px; /* Add padding inside the login form */
+    border-radius: 8px; /* Round the corners of the login form */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Add a shadow to the login form */
+    max-width: 400px; /* Set the maximum width of the login form */
+    width: 100%; /* Make the login form take up 100% of its container's width */
 }
+
+/* Styling for text input fields */
+
 input[type="text"],
 input[type="password"] {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    width: 100%; /* Make the input fields take up 100% of their container's width */
+    padding: 15px; /* Add padding inside the input fields */
+    margin: 10px 0; /* Add margin above and below the input fields */
+    border: 1px solid #ddd; /* Add a 1px solid border with a light gray color */
+    border-radius: 4px; /* Round the corners of the input fields */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
 }
+
+/* Styling for the login button */
+
 button {
-    width: 100%;
-    padding: 15px;
-    margin: 20px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #f90;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
+    width: 100%; /* Make the button take up 100% of its container's width */
+    padding: 15px; /* Add padding inside the button */
+    margin: 20px 0; /* Add margin above and below the button */
+    border: none; /* Remove the button's border */
+    border-radius: 4px; /* Round the corners of the button */
+    background-color: #f90; /* Set the button's background color to orange */
+    color: white; /* Set the text color to white */
+    font-size: 18px; /* Set the font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
 }
+
+/* Hover effect for the login button */
+
 button:hover {
-    background-color: rgb(238, 162, 62);
+    background-color: rgb(238, 162, 62); /* Change the background color on hover */
 }
+
+/* Styling for the registration section below the login form */
+
 .register-section {
-    text-align: center;
-    margin-top: 20px;
+    text-align: center; /* Center-align the text within the registration section */
+    margin-top: 20px; /* Add margin space above the registration section */
 }
+
+/* Styling for registration link */
+
 .register-section a {
-    color: #f90;
-    text-decoration: none;
+    color: #f90; /* Set the link color to orange */
+    text-decoration: none; /* Remove underlines from the link */
 }
+
+/* Hover effect for registration link */
+
 .register-section a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline the link on hover */
 }

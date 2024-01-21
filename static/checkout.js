@@ -1,9 +1,15 @@
+// Add an event listener to the element with the 'confirm' id, listening for a 'click' event
 document.getElementById('confirm').addEventListener('click', function() {
+    // When clicked, call the 'storeName' function
     storeName();
 });
 
+// Define the 'storeName' function
 function storeName() {
+    // Get the value of the element with the 'name' id
     let name = document.getElementById('name').value;
+    
+    // Store the 'name' value in the local storage with the key 'userName'
     localStorage.setItem('userName', name); 
 }
 

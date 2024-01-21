@@ -3,73 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <header>
+        <!-- Navigation header -->
         <div class="nav-area">
+            <!-- Logo linking to the homepage -->
             <a href="/">
-                <img src="static\images\logo.png" alt="Time Redfined">
+                <img src="/static/images/logo.png" alt="Time Redfined">
             </a>
+            <!-- Search area -->
             <div class="search-area">
                 <form action="/search" method="get">
-                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
+                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products">
                     <button type="submit" id="submitButton">Search</button>
                 </form> 
             </div>
+            <!-- Navigation menu -->
             <nav>   
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li class="dropdown-menu" id="dropdown-menu"><i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown menu for user account -->
+                    <li class="dropdown-menu" id="dropdown-menu">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
                         <ul class="toggle-menu closed" id="toggle-menu">
+                            <!-- Conditional rendering based on user session -->
                             {% if 'username' not in session %}
                             <li><a href="login">Log in</a></li>
                             <li><a href="register">Sign up</a></li>
-                        {% else %}
+                            {% else %}
                             <li><a href="logout">Log out</a></li>
-                        {% endif %}
+                            {% endif %}
                         </ul>
                     </li>
-                    <!-- <li>Contact Us</li> -->
                 </ul>
             </nav>
+            <!-- Cart area -->
             <div class="cart-area">
-                    <a href="cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
+                <a href="cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
             </div>
         </div>
     </header>
     <section>
-            <div class="products-container">
-                {% for product in products %}
-                    <li>
-                        <a href="{{ url_for('product_detail', product_id=product.id) }}">
-                            <img src="{{ product.image }}" alt="{{ product.name }}">
-                        </a>
-                        <h2>{{ product.name }}</h2>
-                        <p>{{ product.description }}</p>
-                        <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span></p>
-                        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
-                            <label for="quantity-{{ product.id }}">Quantity:</label>
-                            <select name="quantity" id="quantity-{{ product.id }}" onchange="updateTotalPrice('{{ product.id }}')" >
-                                {% for qty in range (1 , 11) %}
-                                    <option value="{{ qty }}">{{ qty }}</option>
-                                {% endfor %}
-                            </select>
-                            <button type="submit" class="add-to-cart">Add to Cart</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </div>
+        <!-- Products container -->
+        <div class="products-container">
+            <!-- Loop through products (dynamic content) -->
+            {% for product in products %}
+                <li>
+                    <!-- Link to product detail -->
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                        <img src="{{ product.image }}" alt="{{ product.name }}">
+                    </a>
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <!-- Display product price -->
+                    <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span></p>
+                    <!-- Form to add product to cart -->
+                    <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
+                        <label for="quantity-{{ product.id }}">Quantity:</label>
+                        <select name="quantity" id="quantity-{{ product.id }}" onchange="updateTotalPrice('{{ product.id }}')">
+                            <!-- Options for quantity selection -->
+                            {% for qty in range (1 , 11) %}
+                                <option value="{{ qty }}">{{ qty }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="add-to-cart">Add to Cart</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </div>
     </section>
     <footer>
+        <!-- Footer with about us section -->
         <div class="about">
             <h2>About Us</h2>
             <p>Welcome to our store. We offer a variety of watches to suit your needs. Browse our collection and enjoy our offers!</p>
-            </div>
+        </div>
+        <!-- Copyright notice -->
         <p>© 2024 Online Store. All rights reserved.</p>
     </footer>
+    <!-- Link to JavaScript file -->
     <script src="/static/main.js"></script>
 </body>
 </html>

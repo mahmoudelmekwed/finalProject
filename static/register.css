@@ -1,6 +1,10 @@
-body {
+/* Global Reset and Basic Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background: #fff;
+background: #fff;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -15,6 +19,8 @@ body {
     max-width: 400px;
     width: 100%;
 }
+
+/* Styling for Text Input Fields */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -25,6 +31,8 @@ input[type="password"] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+/* Styling for Registration Button */
 button {
     width: 100%;
     padding: 15px;
@@ -36,17 +44,25 @@ button {
     font-size: 18px;
     cursor: pointer;
 }
+
+/* Hover Effect for Registration Button */
 button:hover {
     background-color: rgb(238, 162, 62);
 }
+
+/* Styling for Login Section */
 .login-section {
     text-align: center;
     margin-top: 20px;
 }
+
+/* Styling for Login Link */
 .login-section a {
     color: #f90;
     text-decoration: none;
 }
+
+/* Hover Effect for Login Link */
 .login-section a:hover {
     text-decoration: underline;
 }

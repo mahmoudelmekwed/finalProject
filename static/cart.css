@@ -1,3 +1,4 @@
+/* Reset some default styles for the body */
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
@@ -5,53 +6,59 @@ body {
     color: #333;
 }
 
+/* Styling for the navigation area */
 .nav-area {
-    /* background-color: #e6e6e6;  */
-    background-color: white; 
+    background-color: white; /* Background color */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 8px 20px;
 }
 
-
+/* Styling for the logo image in the navigation area */
 .nav-area img {
     height: 50px;
     margin-right: 20px;
 }
 
+/* Styling for the search area within the navigation */
 .search-area {
     flex-grow: 1;
     display: flex;
     align-items: center;
 }
 
+/* Styling for the search form */
 .search-area form {
     display: flex;
     flex-grow: 1;
 }
 
+/* Styling for the search input */
 .search-area input[type="text"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #333;
-    border-radius: 3px 3px; 
+    border-radius: 3px; /* Rounded corners */
 }
 
+/* Styling for the search button */
 .search-area button {
     padding: 8px 16px;
-    background-color: #f90; 
+    background-color: #f90; /* Background color */
     color: white;
     border: none;
-    border-radius:  3px 3px; 
+    border-radius: 3px;
     cursor: pointer;
     margin-left: 10px;
 }
 
+/* Styling for the search button on hover */
 .search-area button:hover {
-    background-color: rgb(238, 162, 62); 
+    background-color: rgb(238, 162, 62);
 }
 
+/* Styling for the navigation menu */
 nav ul {
     list-style: none;
     display: flex;
@@ -59,35 +66,41 @@ nav ul {
     margin: 10px;
 }
 
+/* Styling for the navigation menu items */
 nav ul li {
     margin: 0 10px;
     color: #000;
     cursor: pointer;
-    font-size: 1.2em; 
+    font-size: 1.2em;
 }
 
-nav ul li:hover{
+/* Styling for navigation menu items on hover */
+nav ul li:hover {
     color: #f90;
 }
 
+/* Styling for navigation menu item links */
 nav ul li a {
     text-decoration: none;
     color: #000;
 }
 
-nav ul li a:hover{
+/* Styling for navigation menu item links on hover */
+nav ul li a:hover {
     color: #f90;
 }
 
-nav .dropdown-menu{
+/* Styling for the dropdown menu */
+nav .dropdown-menu {
     position: relative;
 }
 
-nav .toggle-menu{
+/* Styling for the toggle menu (dropdown) */
+nav .toggle-menu {
     display: none;
     position: absolute;
     background-color: white;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     list-style: none;
     padding: 0;
@@ -97,16 +110,19 @@ nav .toggle-menu{
     border-radius: 5px;
 }
 
+/* Styling for the opened toggle menu */
 .toggle-menu.opened {
     display: block;
 }
 
+/* Styling for items in the toggle menu */
 .toggle-menu li {
     padding: 8px 16px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
+/* Styling for links in the toggle menu */
 .toggle-menu li a {
     text-decoration: none;
     color: black;
@@ -115,12 +131,14 @@ nav .toggle-menu{
     padding: 4px 14px;
 }
 
+/* Styling for links in the toggle menu on hover */
 .toggle-menu li a:hover {
     background-color: #f1f1f1;
 }
 
+/* Styling for the cart area in the navigation */
 .nav-area .cart-area a {
-    color: black; 
+    color: black;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -128,15 +146,18 @@ nav .toggle-menu{
     position: relative;
 }
 
-.nav-area .cart-area a:hover{
+/* Styling for the cart area link on hover */
+.nav-area .cart-area a:hover {
     color: #f90;
 }
 
+/* Styling for the cart icon in the cart area */
 .nav-area .cart-area a i {
     font-size: 23px;
     margin-right: 12px;
 }
 
+/* Styling for the cart item count in the cart area */
 .nav-area .cart-area a span {
     font-size: 15px;
     padding: 2px 4px;
@@ -148,15 +169,17 @@ nav .toggle-menu{
     left: 17px;
 }
 
-.nav-area .cart-area a:hover span{
+/* Styling for the cart item count on hover */
+.nav-area .cart-area a:hover span {
     background-color: #444;
 }
 
-
+/* Additional styles for icons */
 .fa-solid {
     margin-right: 5px;
 }
 
+/* Styling for page titles */
 .page-title {
     color: #333;
     padding-left: 30px;
@@ -164,6 +187,7 @@ nav .toggle-menu{
     margin-bottom: 40px;
 }
 
+/* Styling for the cart container */
 .cart-container {
     display: flex;
     justify-content: space-between;
@@ -172,10 +196,12 @@ nav .toggle-menu{
     padding-right: 30px;
 }
 
+/* Styling for the cart items */
 .cart-items {
     width: 70%;
 }
 
+/* Styling for individual cart items */
 .cart-item {
     background-color: white;
     border-bottom: 1px solid #eee;
@@ -186,11 +212,13 @@ nav .toggle-menu{
     justify-content: space-between;
 }
 
+/* Styling for the left part of the cart item */
 .cart-item .cart-left {
     display: flex;
     align-items: center;
 }
 
+/* Styling for the right part of the cart item */
 .cart-item .cart-right {
     display: flex;
     flex-direction: column;
@@ -198,42 +226,49 @@ nav .toggle-menu{
     justify-content: center;
 }
 
+/* Styling for the price in the cart item */
 .cart-item .cart-right .price {
     font-size: 20px;
     font-weight: bold;
     color: #333;
 }
 
+/* Styling for the cart item form */
 .cart-item form {
     margin-top: 10px;
 }
 
+/* Styling for the cart item details */
 .cart-item .cart-item-details {
     display: flex;
     flex-direction: column;
-
 }
 
+/* Styling for the last cart item (no bottom border) */
 .cart-item:last-child {
     border-bottom: none;
 }
 
+/* Styling for cart item images */
 .cart-item img {
     max-width: 100px;
     border-radius: 4px;
     margin-right: 20px;
 }
 
+/* Styling for cart item headings */
 .cart-item h3 {
     margin: 0;
     color: #333;
 }
 
+/* Styling for cart item paragraphs */
 .cart-item p {
-    margin: 10px 0 0 ;
+    margin: 10px 0 0;
     color: #666;
 }
 
+/* Styling for the cart item buttons */
 .cart-item .cart-right button {
     background-color: white;
     color: #f90;
@@ -247,10 +282,12 @@ nav .toggle-menu{
     transition: background 0.3s ease;
 }
 
+/* Styling for the cart item buttons on hover */
 .cart-item .cart-right button:hover {
-    background-color: rgba(255, 153, 0, 0.3); 
+    background-color: rgba(255, 153, 0, 0.3);
 }
 
+/* Styling for the checkout container */
 .checkout-container {
     width: 25%;
     padding: 20px;
@@ -259,7 +296,8 @@ nav .toggle-menu{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#checkoutButton{
+/* Styling for the checkout button */
+#checkoutButton {
     width: 100%;
     padding: 15px;
     margin: 20px 0;
@@ -271,31 +309,38 @@ nav .toggle-menu{
     cursor: pointer;
 }
 
-#checkoutButton:hover{
+/* Styling for the checkout button on hover */
+#checkoutButton:hover {
     background-color: rgb(238, 162, 62);
 }
 
+/* Styling for the total cart */
 .total-cart {
     margin-bottom: 20px;
 }
 
+/* Styling for the footer */
 footer {
-    background-color: #e6e6e6; 
-    color: #333; 
+    background-color: #e6e6e6;
+    color: #333;
     padding: 20px;
     text-align: center;
 }
 
+/* Styling for the about section in the footer */
 footer .about {
-    background-color: rgb(247, 205, 147); 
-    padding: 10px; 
-    margin: 10px 0; 
+    background-color: rgb(247, 205, 147);
+    padding: 10px;
+    margin: 10px 0;
 }
 
+/* Styling for the h2 element in the about section */
 footer .about h2 {
-    color: #fff; 
+    color: #fff;
 }
 
-footer .about p, footer p {
+/* Styling for paragraphs in the footer */
+footer .about p,
+footer p {
     color: #000;
 }

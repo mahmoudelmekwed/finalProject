@@ -1,3 +1,5 @@
+/* Define the styling for the entire webpage */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,6 +7,8 @@ body {
     background-color: #ffffff;
     text-align: center;
 }
+
+/* Styling for the navigation area */
 
 .nav-area {
     background-color: #e6e6e6; 
@@ -14,13 +18,14 @@ body {
     padding: 8px 20px;
 }
 
+/* Styling for the logo/image in the navigation area */
 
 .nav-area img {
     height: 50px;
     margin-right: 20px;
 }
 
-
+/* Styling for the search area */
 
 .search-area {
     flex-grow: 1;
@@ -28,10 +33,14 @@ body {
     align-items: center;
 }
 
+/* Styling for the search form within the search area */
+
 .search-area form {
     display: flex;
     flex-grow: 1;
 }
+
+/* Styling for the search input box */
 
 .search-area input[type="text"] {
     width: 100%;
@@ -39,6 +48,8 @@ body {
     border: none;
     border-radius: 3px 3px; 
 }
+
+/* Styling for the search button */
 
 .search-area button {
     padding: 8px 16px;
@@ -50,9 +61,13 @@ body {
     margin-left: 10px;
 }
 
+/* Hover effect for the search button */
+
 .search-area button:hover {
     background-color: rgb(238, 162, 62); 
 }
+
+/* Styling for the navigation menu ul */
 
 nav ul {
     list-style: none;
@@ -61,6 +76,8 @@ nav ul {
     margin: 10px;
 }
 
+/* Styling for individual menu items */
+
 nav ul li {
     margin: 0 10px;
     color: #000;
@@ -68,13 +85,19 @@ nav ul li {
     font-size: 1.2em; 
 }
 
+/* Hover effect for menu items */
+
 nav ul li:hover{
     color: #f90;
 }
 
+/* Styling for dropdown menus */
+
 nav .dropdown-menu{
     position: relative;
 }
+
+/* Styling for the toggle menu */
 
 nav .toggle-menu{
     display: none;
@@ -100,6 +123,8 @@ nav .toggle-menu{
     border-bottom: 1px solid #ddd;
 }
 
+/* Styling for links within the toggle menu */
+
 .toggle-menu li a {
     text-decoration: none;
     color: black;
@@ -108,9 +133,13 @@ nav .toggle-menu{
     padding: 4px 14px;
 }
 
+/* Hover effect for links in the toggle menu */
+
 .toggle-menu li a:hover {
     background-color: #f1f1f1;
 }
+
+/* Styling for the cart area in the navigation */
 
 .nav-area .cart-area a {
     color: black; 
@@ -121,14 +150,20 @@ nav .toggle-menu{
     position: relative;
 }
 
+/* Hover effect for cart area */
+
 .nav-area .cart-area a:hover{
     color: #f90;
 }
+
+/* Styling for the cart icon in the cart area */
 
 .nav-area .cart-area a i {
     font-size: 23px;
     margin-right: 12px;
 }
+
+/* Styling for the badge/count in the cart area */
 
 .nav-area .cart-area a span {
     font-size: 15px;
@@ -141,10 +176,13 @@ nav .toggle-menu{
     left: 17px;
 }
 
+/* Hover effect for the badge/count in the cart area */
+
 .nav-area .cart-area a:hover span{
-    /* color: white; */
     background-color: #444;
 }
+
+/* Additional styling for specific elements */
 
 .fa-solid {
     margin-right: 5px;
@@ -170,7 +208,6 @@ nav .toggle-menu{
     margin-bottom: 10px;
 }
 
-
 .button {
     width: 200px;
     padding: 15px;
@@ -184,6 +221,9 @@ nav .toggle-menu{
     display: block;
     text-decoration: none;
 }
+
+/* Hover effect for buttons */
+
 .button:hover {
     background-color: rgb(238, 162, 62);
 }

@@ -1,9 +1,13 @@
+/* Global styles to reset default margin, padding, and set font-family */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+/* Styling for the navigation area */
 
 .nav-area {
     background-color: #e6e6e6; 
@@ -13,13 +17,14 @@
     padding: 8px 20px;
 }
 
+/* Styling for the logo/image within the navigation area */
 
 .nav-area img {
     height: 50px;
     margin-right: 20px;
 }
 
-
+/* Styling for the search area */
 
 .search-area {
     flex-grow: 1;
@@ -27,10 +32,14 @@
     align-items: center;
 }
 
+/* Styling for the search form within the search area */
+
 .search-area form {
     display: flex;
     flex-grow: 1;
 }
+
+/* Styling for the text input within the search form */
 
 .search-area input[type="text"] {
     width: 100%;
@@ -38,6 +47,8 @@
     border: none;
     border-radius: 3px 3px; 
 }
+
+/* Styling for the search button within the search area */
 
 .search-area button {
     padding: 8px 16px;
@@ -49,9 +60,13 @@
     margin-left: 10px;
 }
 
+/* Hover effect for the search button */
+
 .search-area button:hover {
     background-color: rgb(238, 162, 62); 
 }
+
+/* Styling for the navigation menu ul */
 
 nav ul {
     list-style: none;
@@ -60,6 +75,8 @@ nav ul {
     margin: 10px;
 }
 
+/* Styling for individual menu items (li) within the navigation menu */
+
 nav ul li {
     margin: 0 10px;
     color: #000;
@@ -67,24 +84,34 @@ nav ul li {
     font-size: 1.2em; 
 }
 
-nav ul li:hover{
+/* Hover effect for individual menu items (li) */
+
+nav ul li:hover {
     color: #f90;
 }
+
+/* Styling for links (a) within individual menu items (li) */
 
 nav ul li a {
     text-decoration: none;
     color: #000;
 }
 
-nav ul li a:hover{
-color: #f90;
+/* Hover effect for links (a) within individual menu items (li) */
+
+nav ul li a:hover {
+    color: #f90;
 }
 
-nav .dropdown-menu{
+/* Styling for dropdown menus */
+
+nav .dropdown-menu {
     position: relative;
 }
 
-nav .toggle-menu{
+/* Styling for the toggle menu */
+
+nav .toggle-menu {
     display: none;
     position: absolute;
     background-color: white;
@@ -98,15 +125,21 @@ nav .toggle-menu{
     border-radius: 5px;
 }
 
+/* Display toggle menu when opened */
+
 .toggle-menu.opened {
     display: block;
 }
+
+/* Styling for individual items (li) within the toggle menu */
 
 .toggle-menu li {
     padding: 8px 16px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+/* Styling for links (a) within the toggle menu */
 
 .toggle-menu li a {
     text-decoration: none;
@@ -116,9 +149,13 @@ nav .toggle-menu{
     padding: 4px 14px;
 }
 
+/* Hover effect for links (a) within the toggle menu */
+
 .toggle-menu li a:hover {
     background-color: #f1f1f1;
 }
+
+/* Styling for the cart area in the navigation */
 
 .nav-area .cart-area a {
     color: black; 
@@ -129,14 +166,20 @@ nav .toggle-menu{
     position: relative;
 }
 
-.nav-area .cart-area a:hover{
+/* Hover effect for cart area */
+
+.nav-area .cart-area a:hover {
     color: #f90;
 }
+
+/* Styling for the cart icon in the cart area */
 
 .nav-area .cart-area a i {
     font-size: 23px;
     margin-right: 12px;
 }
+
+/* Styling for the badge/count in the cart area */
 
 .nav-area .cart-area a span {
     font-size: 15px;
@@ -149,13 +192,19 @@ nav .toggle-menu{
     left: 17px;
 }
 
-.nav-area .cart-area a:hover span{
+/* Hover effect for the badge/count in the cart area */
+
+.nav-area .cart-area a:hover span {
     background-color: #444;
 }
+
+/* Additional styles for specific elements */
 
 .fa-solid {
     margin-right: 5px;
 }
+
+/* Styling for the products container */
 
 .products-container {
     display: flex;
@@ -163,6 +212,8 @@ nav .toggle-menu{
     justify-content: space-around;
     padding: 0;
 }
+
+/* Styling for individual product items */
 
 .products-container li {
     list-style-type: none;
@@ -175,10 +226,14 @@ nav .toggle-menu{
     border-radius: 4px;
 }
 
+/* Hover effect for individual product items */
+
 .products-container li:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
 }
+
+/* Styling for product images */
 
 .products-container img {
     height: 250px;
@@ -187,15 +242,21 @@ nav .toggle-menu{
     margin-bottom: 10px;
 }
 
+/* Styling for product name */
+
 .products-container h2 {
     font-size: 1.2em;
     margin: 5px 0;
 }
 
+/* Styling for product description */
+
 .products-container p {
     font-size: 0.9em;
     line-height: 1.4;
 }
+
+/* Styling for product price */
 
 .products-container .price {
     margin-top: 4px;
@@ -203,20 +264,28 @@ nav .toggle-menu{
     font-weight: bold;
 }
 
-.products-container .price span{
+/* Styling for the price span within the product */
+
+.products-container .price span {
     font-size: 16px;
     font-weight: bold;
 }
 
-.products-container form label{
+/* Styling for form labels within the product */
+
+.products-container form label {
     font-size: 14px;
 }
+
+/* Styling for quantity dropdown within the product */
 
 .products-container form select {
     padding: 4px 8px;
     border-radius: 2px;
     font-size: 14px;
 }
+
+/* Styling for the add to cart button within the product */
 
 .products-container .add-to-cart {
     display: block;
@@ -229,10 +298,13 @@ nav .toggle-menu{
     margin: 12px auto 6px;
 }
 
+/* Hover effect for the add to cart button */
 
 .products-container .add-to-cart:hover {
-background-color: rgb(238, 162, 62); 
+    background-color: rgb(238, 162, 62); 
 }
+
+/* Styling for the footer */
 
 footer {
     background-color: #e6e6e6; 
@@ -241,18 +313,25 @@ footer {
     text-align: center;
 }
 
+/* Styling for the "about" section within the footer */
+
 footer .about {
     background-color: rgb(247, 205, 147); 
     padding: 10px; 
     margin: 10px 0; 
 }
 
+/* Styling for the header within the "about" section */
+
 footer .about h2 {
     color: #fff; 
 }
 
+/* Styling for paragraphs within the "about" section and footer */
+
 footer .about p, footer p {
     color: #000;
 }
+
 
 

@@ -1,9 +1,13 @@
+/* Apply a global reset to remove default margin, padding, and use box-sizing:border-box */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+/* Styling for the navigation area */
 
 .nav-area {
     background-color: #e6e6e6; 
@@ -13,13 +17,14 @@
     padding: 8px 20px;
 }
 
+/* Styling for the logo/image within the navigation area */
 
 .nav-area img {
     height: 50px;
     margin-right: 20px;
 }
 
-
+/* Styling for the search area */
 
 .search-area {
     flex-grow: 1;
@@ -27,10 +32,14 @@
     align-items: center;
 }
 
+/* Styling for the search form within the search area */
+
 .search-area form {
     display: flex;
     flex-grow: 1;
 }
+
+/* Styling for the text input within the search form */
 
 .search-area input[type="text"] {
     width: 100%;
@@ -39,19 +48,25 @@
     border-radius: 3px 3px; 
 }
 
+/* Styling for the search button within the search area */
+
 .search-area button {
     padding: 8px 16px;
     background-color: #f90; 
     color: white;
     border: none;
-    border-radius:  3px 3px; 
+    border-radius: 3px 3px; 
     cursor: pointer;
     margin-left: 10px;
 }
 
+/* Hover effect for the search button */
+
 .search-area button:hover {
     background-color: rgb(238, 162, 62); 
 }
+
+/* Styling for the navigation menu ul */
 
 nav ul {
     list-style: none;
@@ -60,6 +75,8 @@ nav ul {
     margin: 10px;
 }
 
+/* Styling for individual menu items (li) within the navigation menu */
+
 nav ul li {
     margin: 0 10px;
     color: #000;
@@ -67,18 +84,25 @@ nav ul li {
     font-size: 1.2em; 
 }
 
+/* Hover effect for individual menu items (li) */
+
 nav ul li:hover{
     color: #f90;
 }
+
+/* Styling for links (a) within individual menu items (li) */
 
 nav ul li a {
     text-decoration: none;
     color: #000;
 }
 
+/* Hover effect for links (a) within individual menu items (li) */
+
 nav ul li a:hover{
-color: #f90;
+    color: #f90;
 }
+
 
 nav .dropdown-menu{
     position: relative;

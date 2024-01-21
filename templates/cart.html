@@ -3,47 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/static/cart.css">
 </head>
 <body>
     <header>
+        <!-- Navigation area -->
         <div class="nav-area">
+            <!-- Logo linking to the homepage -->
             <a href="/">
-                <img src="static\images\logo.png" alt="Time Redfined">
+                <img src="/static/images/logo.png" alt="Time Redfined">
             </a>
+            <!-- Search area -->
             <div class="search-area">
                 <form action="/search" method="get">
-                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
+                    <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products">
                     <button type="submit" id="submitButton">Search</button>
                 </form> 
             </div>
+            <!-- Navigation links -->
             <nav>   
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li class="dropdown-menu" id="dropdown-menu"><i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown menu for account options -->
+                    <li class="dropdown-menu" id="dropdown-menu">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
                         <ul class="toggle-menu closed" id="toggle-menu">
+                            <!-- Conditional rendering based on user session -->
                             {% if 'username' not in session %}
                             <li><a href="/login">Log in</a></li>
                             <li><a href="/register">Sign up</a></li>
-                        {% else %}
+                            {% else %}
                             <li><a href="/logout">Log out</a></li>
-                        {% endif %}
+                            {% endif %}
                         </ul>
                     </li>
                 </ul>
             </nav>
+            <!-- Cart area with total quantity -->
             <div class="cart-area">
                 <a href="/cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
-        </div>
+            </div>
         </div>
     </header>
+    <!-- Title of the page -->
     <h1 class="page-title">Shopping Cart</h1>
     <div id="product_id" class="cart-container">
         <div class="cart-items">
-        {% if cart_items  %}
-            {% for cart_item in cart_items  %}
+        <!-- Displaying cart items -->
+        {% if cart_items %}
+            {% for cart_item in cart_items %}
+                <!-- Individual cart item -->
                 <div class="cart-item">
                     <div class="cart-left">
                         <img src="{{ cart_item.image }}" alt="{{ cart_item.name }}">
@@ -55,6 +66,7 @@
                     <div class="cart-right">
                         <p class="price">Price: {{ cart_item.price }}</p>
                         <p>Quantity: {{ cart_item.quantity }}</p>
+                        <!-- Form to remove item from cart -->
                         <form action="{{ url_for('remove_from_cart', product_id=cart_item['id']) }}" method="post">
                             <button type="submit">Remove</button>
                         </form>   
@@ -62,10 +74,13 @@
                 </div>
             {% endfor %}
         </div>
+        <!-- Checkout container -->
         <div class="checkout-container">
             <div class="total-cart">
+                <!-- Displaying total price -->
                 <h3>Total cart: {{ total_price }}</h3>
             </div>
+            <!-- Checkout button -->
             <div class="checkout">
                 <form action="{{ url_for('checkout') }}" method="post">
                     <button type="submit" id="checkoutButton">Checkout</button>
@@ -77,12 +92,15 @@
         {% endif %}
     </div>
     <footer>
+        <!-- About us section -->
         <div class="about">
             <h2>About Us</h2>
-            <p>Welcome to our  store. We offer a variety of watches to suit your needs. Browse our collection and enjoy our offers!</p>
-            </div>
+            <p>Welcome to our store. We offer a variety of watches to suit your needs. Browse our collection and enjoy our offers!</p>
+        </div>
+        <!-- Copyright notice -->
         <p>© 2024 Online Store. All rights reserved.</p>
     </footer>
+    <!-- Linking JavaScript files -->
     <script src="/static/cart.js"></script>
     <script src="/static/main.js"></script>
 </body>

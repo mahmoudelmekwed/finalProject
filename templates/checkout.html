@@ -9,99 +9,118 @@
 </head>
 <body>
   <header>
+    <!-- Navigation area -->
     <div class="nav-area">
+        <!-- Logo linking to the homepage -->
         <a href="/">
             <img src="/static/images/logo.png" alt="Time Redfined">
         </a>
+        <!-- Search area -->
         <div class="search-area">
             <form action="/search" method="get">
-                <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products" >
+                <input type="text" name="product_to_find" id="product_to_find" placeholder="Search products">
                 <button type="submit" id="submitButton">Search</button>
             </form> 
         </div>
+        <!-- Navigation menu -->
         <nav>   
             <ul>
               <li><a href="/">Home</a></li>
-                <li class="dropdown-menu" id="dropdown-menu"><i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                <!-- Dropdown menu for user account -->
+                <li class="dropdown-menu" id="dropdown-menu">
+                    <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
                     <ul class="toggle-menu closed" id="toggle-menu">
+                        <!-- Conditional rendering based on user session -->
                         {% if 'username' not in session %}
                         <li><a href="/login">Log in</a></li>
                         <li><a href="/register">Sign up</a></li>
-                    {% else %}
+                        {% else %}
                         <li><a href="/logout">Log out</a></li>
-                    {% endif %}
+                        {% endif %}
                     </ul>
                 </li>
             </ul>
         </nav>
+        <!-- Cart area -->
         <div class="cart-area">
-                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
+            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i><span id="cart-items-count">{{total_quantity}}</span>Cart</a>
         </div>
     </div>
 </header>
-    <div class="checkout-container">
-        <h2>Checkout</h2>
-        <div class="checkout-row">
-            <div class="billing-section">
-                <form>
-                    <div>
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                        <span class="error-message" id="name-error"></span>
-                    </div>
-                    <div>
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
-                    <span class="error-message" id="address-error"></span>
-                    </div>
-                    <div>
-                    <label for="telephone">Telephone:</label>
-                    <input type="tel" id="telephone" name="telephone" required>
-                    <span class="error-message" id="telephone-error"></span>
-                    </div>
-                </form>
-                <div class="payment-methods">
-                    <h3>Payment method</h3>
-                    <div class="payment-method">
-                      <input type="radio" id="new_card" name="payment" value="new_card">
-                      <label for="new_card">Credit/Debit Card</label>
-                      <div class="card-details">
-                        <div class="field">
-                          <label for="name_on_card">Name on card</label>
-                          <input type="text" id="name_on_card" placeholder="Name on card" required>
+  <!-- Main checkout container -->
+  <div class="checkout-container">
+      <h2>Checkout</h2>
+      <!-- Billing and payment section -->
+      <div class="checkout-row">
+          <div class="billing-section">
+              <!-- Form for billing information -->
+              <form>
+                  <div>
+                      <label for="name">Name:</label>
+                      <input type="text" id="name" name="name" required>
+                      <span class="error-message" id="name-error"></span>
+                  </div>
+                  <div>
+                  <label for="address">Address:</label>
+                  <input type="text" id="address" name="address" required>
+                  <span class="error-message" id="address-error"></span>
+                  </div>
+                  <div>
+                  <label for="telephone">Telephone:</label>
+                  <input type="tel" id="telephone" name="telephone" required>
+                  <span class="error-message" id="telephone-error"></span>
+                  </div>
+              </form>
+              <!-- Payment methods section -->
+              <div class="payment-methods">
+                  <h3>Payment method</h3>
+                  <!-- Radio button for card payment option -->
+                  <div class="payment-method">
+                    <input type="radio" id="new_card" name="payment" value="new_card">
+                    <label for="new_card">Credit/Debit Card</label>
+                    <!-- Card details input fields -->
+                    <div class="card-details">
+                      <div class="field">
+                        <label for="name_on_card">Name on card</label>
+                        <input type="text" id="name_on_card" placeholder="Name on card" required>
+                      </div>
+                      <div class="field">
+                        <label for="card_number">Card number</label>
+                        <input type="text" id="card_number" placeholder="1234 5678 9012 3456" minlength="16" maxlength="16" required>
+                        <span class="error-message" id="card_number-error"></span>
+                      </div>
+                      <div class="field-group">
+                        <div class="field expiry">
+                          <label for="expiry_date">Expiry date</label>
+                          <input type="text" id="expiry_date" placeholder="MM/YY" required>
+                          <span class="error-message" id="expiry_date-error"></span>
                         </div>
-                        <div class="field">
-                          <label for="card_number">Card number</label>
-                          <input type="text" id="card_number" placeholder="1234 5678 9012 3456" minlength="16" maxlength="16" required>
-                          <span class="error-message" id="card_number-error"></span>
-                        </div>
-                        <div class="field-group">
-                          <div class="field expiry">
-                            <label for="expiry_date">Expiry date</label>
-                            <input type="text" id="expiry_date" placeholder="MM/YY" required>
-                            <span class="error-message" id="expiry_date-error"></span>
-                          </div>
-                          <div class="field cvc">
-                            <label for="cvc">CVC/CVV</label>
-                            <input type="text" id="cvc" placeholder="CVC" required>
-                            <span class="error-message" id="cvc-error"></span>
-                          </div>
+                        <div class="field cvc">
+                          <label for="cvc">CVC/CVV</label>
+                          <input type="text" id="cvc" placeholder="CVC" required>
+                          <span class="error-message" id="cvc-error"></span>
                         </div>
                       </div>
                     </div>
                   </div>
-          </div>
-        <div class="summary-section">
-          <h2>Summary</h2>
-          <p>Total: <span id="total-price">{{ total_price }}</span></p>
-          <form action="{{ url_for('confirmation') }}" method="post">
-              <button class="complete-checkout" id="confirm">Complete Checkout</button>
-          </form>
-          <p>30-Day Money-Back Guarantee</p>
+                </div>
         </div>
-        </div>
+      <!-- Order summary section -->
+      <div class="summary-section">
+        <h2>Summary</h2>
+        <!-- Display total price -->
+        <p>Total: <span id="total-price">{{ total_price }}</span></p>
+        <!-- Form to complete checkout -->
+        <form action="{{ url_for('confirmation') }}" method="post">
+            <button class="complete-checkout" id="confirm">Complete Checkout</button>
+        </form>
+        <!-- Additional information -->
+        <p>30-Day Money-Back Guarantee</p>
       </div>
-      <script src="/static/checkout.js"></script>
-      <script src="/static/main.js"></script>
+      </div>
+    </div>
+    <!-- JavaScript files for functionality -->
+    <script src="/static/checkout.js"></script>
+    <script src="/static/main.js"></script>
 </body>
 </html>

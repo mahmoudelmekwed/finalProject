@@ -8,22 +8,33 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <!-- Container for the registration form -->
     <div class="register-form">
+        <!-- Heading for the registration section -->
         <h2>Sign up</h2>
+        <!-- Registration form -->
         <form action="/register" method="post" id="registerForm">
+            <!-- Input field for username -->
             <input type="text" name="username" placeholder="User name" required>
+            <!-- Input field for email -->
             <input type="email" name="email" placeholder="Email" id="emailField" required>
+            <!-- Container for email error messages -->
             <div id="emailError" style="color: red;"></div>
+            <!-- Input field for password -->
             <input type="password" name="password" placeholder="Password" id="password" required>
+            <!-- Container for password error messages -->
             <div id="passwordError" style="color: red;"></div>
+            <!-- Submit button for the form -->
             <button type="submit">Sign up</button>
         </form>
+        <!-- Section for redirecting to the login page -->
         <div class="login-section">
             <span>Already have an account? 
-                <a href="/login">Log in</a>
+                <a href="/login">Log in</a> <!-- Link to the login page -->
             </span>
         </div>
     </div>
+    <!-- Link to a JavaScript file for additional functionality -->
     <script src="/static/main.js"></script>
 </body>
 </html>
