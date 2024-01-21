@@ -234,3 +234,25 @@ nav .toggle-menu{
 background-color: rgb(238, 162, 62); 
 }
 
+footer {
+    background-color: #e6e6e6; 
+    color: #333; 
+    padding: 20px;
+    text-align: center;
+}
+
+footer .about {
+    background-color: rgb(247, 205, 147); 
+    padding: 10px; 
+    margin: 10px 0; 
+}
+
+footer .about h2 {
+    color: #fff; 
+}
+
+footer .about p, footer p {
+    color: #000;
+}
+
+
