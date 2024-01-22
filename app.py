@@ -331,6 +331,13 @@ def check_email():
         return jsonify({"exists": True})
     return jsonify({"exists": False})
 
+@app.route('/check-username', methods=['POST'])
+def check_username():
+    username = request.json['username']
+    if retrieve_user(username):
+        return jsonify({"exists": True})
+    return jsonify({"exists": False})
+
 
 
 

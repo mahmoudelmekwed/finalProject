@@ -1,10 +1,10 @@
 /* Global Reset and Basic Styling */
-* {
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-background: #fff;
+    background: #fff;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -65,4 +65,8 @@ button:hover {
 /* Hover Effect for Login Link */
 .login-section a:hover {
     text-decoration: underline;
+}
+
+#usernameError, #emailError{
+    color: red;
 }

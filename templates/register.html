@@ -15,15 +15,14 @@
         <!-- Registration form -->
         <form action="/register" method="post" id="registerForm">
             <!-- Input field for username -->
-            <input type="text" name="username" placeholder="User name" required>
+            <input type="text" name="username" placeholder="User name" id="nameField" required>
+            <div id="usernameError"></div>
             <!-- Input field for email -->
             <input type="email" name="email" placeholder="Email" id="emailField" required>
             <!-- Container for email error messages -->
-            <div id="emailError" style="color: red;"></div>
+            <div id="emailError"></div>
             <!-- Input field for password -->
             <input type="password" name="password" placeholder="Password" id="password" required>
-            <!-- Container for password error messages -->
-            <div id="passwordError" style="color: red;"></div>
             <!-- Submit button for the form -->
             <button type="submit">Sign up</button>
         </form>
@@ -35,6 +34,6 @@
         </div>
     </div>
     <!-- Link to a JavaScript file for additional functionality -->
-    <script src="/static/main.js"></script>
+    <script src="/static/register.js"></script>
 </body>
 </html>
