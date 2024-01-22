@@ -247,6 +247,7 @@ def confirmation():
     
     total_price = session.get('total_price' , 0)
 
+    session['total_quantity'] = 0
     user.clear_cart()
     save_products(user.cart)
     return render_template('confirmation.html' , total_price = total_price)

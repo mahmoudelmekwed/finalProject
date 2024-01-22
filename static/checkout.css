@@ -180,7 +180,7 @@ nav .toggle-menu {
 }
 
 .checkout-container {
-  padding: 40px 280px;
+  padding: 40px 230px;
 }
 
 /* Styling for the heading within the checkout container */
@@ -194,6 +194,7 @@ nav .toggle-menu {
   justify-content: space-evenly;
   align-items: flex-start;
 }
+
 
 /* Styling for the billing section */
 .billing-section {
@@ -344,5 +345,9 @@ input[type="radio"]:checked + label + .card-details {
 /* Hover effect for the complete checkout button */
 .complete-checkout:hover {
   background-color: rgb(238, 162, 62);
+}
+
+input{
+  margin-bottom: 5px;
 }
 
