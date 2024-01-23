@@ -28,7 +28,13 @@
                     <li><a href="/">Home</a></li>
                     <!-- Dropdown menu for user account -->
                     <li class="dropdown-menu" id="dropdown-menu">
-                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-chevron-down"></i>
+                        <i class="fa-regular fa-user"></i>
+                        {% if 'username' in session %}
+                        Hi, {{ session['username'] }} 
+                        {% else %}
+                        Account
+                        {% endif %}
+                        <i class="fa-solid fa-chevron-down"></i>
                         <ul class="toggle-menu closed" id="toggle-menu">
                             <!-- Conditional rendering based on user session -->
                             {% if 'username' not in session %}
