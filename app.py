@@ -313,7 +313,7 @@ def login():
 
         if user and user.password == password:
             session['username'] = user.username
-            return redirect(url_for('show_cart'))
+            return redirect(url_for('home'))
         else:
             pass
     return render_template('login.html')
