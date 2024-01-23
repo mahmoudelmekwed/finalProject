@@ -15,7 +15,7 @@
         <!-- Registration form -->
         <form action="/register" method="post" id="registerForm">
             <!-- Input field for username -->
-            <input type="text" name="username" placeholder="User name" id="nameField" required>
+            <input type="text" name="username" placeholder="Username" id="nameField" required>
             {% if username_error %}
                 <div class="error">{{ username_error }}</div>
             {% endif %}

@@ -179,8 +179,48 @@ nav .toggle-menu {
   margin-right: 5px;
 }
 
+/* Add media query style  */
+
+@media(max-width: 768px){
+  .nav-area {
+      flex-wrap: wrap;
+  }
+  .nav-area .logo{
+      width: 20%;
+  }
+  .nav-area .search-area{
+      width: 75%;
+  }
+  .nav-area nav{
+      width: 75%;
+  }
+  nav .toggle-menu {
+      width: 150px;
+  }
+  .toggle-menu li {
+      padding: 8px;
+  }
+  .toggle-menu li a {
+      padding: 4px;
+      text-align: center;
+  }
+  .nav-area .cart-area{
+      width: 20%;
+  }
+}
+
+@media(max-width: 450px){
+  nav ul li {
+      margin: 0 6px;
+      font-size: 1em; 
+  }
+  .nav-area .cart-area a {
+      font-size: 1em;
+  }
+}
+
 .checkout-container {
-  padding: 40px 230px;
+  padding: 40px 200px;
 }
 
 /* Styling for the heading within the checkout container */
@@ -199,18 +239,26 @@ nav .toggle-menu {
 /* Styling for the billing section */
 .billing-section {
   width: 60%;
+  border-radius: 4px;
+  padding: 20px 10px;
+  background-color: #e6e6e6;
 }
 
 /* Styling for error messages (colored red) */
-span {
+span.error-message {
   color: red;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-/* Styling for form labels and input fields within the billing section */
-.billing-section form label,
-.billing-section form input {
+/* Styling for form labels field within the billing section */
+.billing-section form label{
   display: block;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* Styling for input fields within the billing section */
@@ -218,12 +266,17 @@ span {
   padding: 7px;
   width: 350px;
   border-radius: 4px;
+  display: block;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Styling for the payment methods section */
 .payment-methods {
-  width: 460px;
   font-family: Arial, sans-serif;
+  margin: auto;
+  overflow: hidden;
 }
 
 /* Styling for payment method headings */
@@ -252,8 +305,6 @@ input[type="radio"] {
 
 /* Styling for card details section */
 .card-details {
-  background-color: #e6e6e6;
-  border: 1px solid #dcdcdc;
   margin-top: 20px;
   padding: 20px 50px;
   border-radius: 4px;
@@ -351,3 +402,40 @@ input{
   margin-bottom: 5px;
 }
 
+@media(max-width: 1100px){
+  .checkout-container {
+    padding: 40px 60px;
+  }
+}
+
+@media(max-width: 992px){
+  .checkout-row {
+    flex-direction: column;
+  }
+  .billing-section {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  .summary-section {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media(max-width: 768px){
+  .billing-section {
+    width: 100%;
+  }
+  .summary-section {
+    width: 100%;
+  }
+}
+
+@media(max-width: 500px){
+  .billing-section form input {
+    width: 90%;
+  }
+}

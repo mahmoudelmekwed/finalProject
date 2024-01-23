@@ -1,6 +1,6 @@
 import json
 import secrets
-from flask import Flask, jsonify, render_template , request, session , url_for ,redirect
+from flask import Flask, render_template , request, session , url_for ,redirect
 
 # Initialize the Flask application
 app = Flask("Online Store")
@@ -9,13 +9,12 @@ app.secret_key = secrets.token_hex(16)
 
 # Define the Product class to represent each product in the store
 class Product:
-    def __init__(self, id, image, name, price, description, stock, quantity):
+    def __init__(self, id, image, name, price, description, quantity):
         self.id = id
         self.image = image
         self.name = name
         self.price = price
         self.description = description
-        self.stock = stock
         self.quantity = quantity
 
     # Calculate the total price of the product based on its quantity
@@ -65,7 +64,7 @@ def load_products(filename):
     file.close()
     products = []
     for p in products_data:
-        product = Product(p['id'], p['image'], p['name'], p['price'], p['description'], p['stock'], p['quantity'])
+        product = Product(p['id'], p['image'], p['name'], p['price'], p['description'], p['quantity'])
         products.append(product)
 
     return products
@@ -80,9 +79,15 @@ def save_products(cart):
 @app.route("/")
 def home():
     products = load_products("products.json")
-    total_quantity = session.get('total_quantity', 0)
-    return render_template("index.html", products=products, total_quantity=total_quantity)
 
+    if 'username' in session:
+        user = retrieve_user(session['username'])
+        total_quantity = user.calculate_cart_quantity()
+        session['total_quantity'] = total_quantity
+    else:
+        total_quantity = 0
+
+    return render_template("index.html", products=products, total_quantity=total_quantity)
 
 # Route to display the details of a specific product based on its product_id
 @app.route('/product/<product_id>')
@@ -93,7 +98,7 @@ def product_detail(product_id):
         if str(p.id) == product_id:
             product = p
             break
-     # Retrieve the total quantity of items in the user's session (shopping cart)
+    # Retrieve the total quantity of items in the user's session (shopping cart)
     total_quantity = session.get('total_quantity' , 0)
     if product:
         return render_template('product_detail.html', product=product , total_quantity=total_quantity)
@@ -340,7 +345,6 @@ def login():
         identifier = request.form['identifier']
         password = request.form['password']  
         user = retrieve_user(identifier)
-
 
         if user is None:
             error = 'Username not found.'
