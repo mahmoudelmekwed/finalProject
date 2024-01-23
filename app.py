@@ -305,6 +305,7 @@ def register():
 # Flask route for user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         identifier = request.form['identifier']
         password = request.form['password']  
@@ -315,8 +316,8 @@ def login():
             session['username'] = user.username
             return redirect(url_for('home'))
         else:
-            pass
-    return render_template('login.html')
+            error = 'Invalid username or password.'
+    return render_template('login.html' , error=error)
 
 # Flask route for user logout
 @app.route('/logout')

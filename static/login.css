@@ -33,6 +33,12 @@ input[type="password"] {
     box-sizing: border-box; /* Include padding and border in the width calculation */
 }
 
+/* Styling for error message */
+
+.error{
+    color: red;
+}
+
 /* Styling for the login button */
 
 button {

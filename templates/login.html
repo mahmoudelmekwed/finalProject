@@ -14,9 +14,13 @@
         <!-- Form for login -->
         <form method="post" action="/login" class="login-form">
             <!-- Input field for username -->
-            <input type="text" name="identifier" placeholder="Username" required>
+            <input type="text" name="identifier" placeholder="Enter your username or email" required>
             <!-- Input field for password -->
             <input type="password" name="password" placeholder="Password" required>
+            <!-- Display error message -->
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
             <!-- Submit button for the form -->
             <button type="submit">Login</button>
         </form>
