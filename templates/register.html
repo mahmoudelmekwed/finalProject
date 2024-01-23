@@ -16,13 +16,18 @@
         <form action="/register" method="post" id="registerForm">
             <!-- Input field for username -->
             <input type="text" name="username" placeholder="User name" id="nameField" required>
-            <div id="usernameError"></div>
+            {% if username_error %}
+                <div class="error">{{ username_error }}</div>
+            {% endif %}
             <!-- Input field for email -->
             <input type="email" name="email" placeholder="Email" id="emailField" required>
             <!-- Container for email error messages -->
-            <div id="emailError"></div>
+            {% if email_error %}
+                <div class="error">{{ email_error }}</div>
+            {% endif %}
             <!-- Input field for password -->
             <input type="password" name="password" placeholder="Password" id="password" required>
+            <div class="error" id="passwordError"></div>
             <!-- Submit button for the form -->
             <button type="submit">Sign up</button>
         </form>

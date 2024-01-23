@@ -11,6 +11,10 @@ body {
     align-items: center;
     height: 100vh;
 }
+.register-form{
+    width: 485px;
+}
+
 #registerForm {
     background: #f9f9f9;
     padding: 40px;
@@ -67,6 +71,7 @@ button:hover {
     text-decoration: underline;
 }
 
-#usernameError, #emailError{
+/* color for error message */
+.error{
     color: red;
 }

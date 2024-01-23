@@ -252,12 +252,15 @@ def confirmation():
     save_products(user.cart)
     return render_template('confirmation.html' , total_price = total_price)
 
+# Opens and reads the JSON file containing user data
+def load_users():
+    with open('users.json', 'r') as file:
+        return json.load(file)
 
 # Function to save user data to a JSON file
 def save_user(user):
     try:
-        with open('users.json', 'r') as file:
-            users = json.load(file)
+        users = load_users()
     except (FileNotFoundError, json.JSONDecodeError):
         users = []
 
@@ -276,26 +279,53 @@ def save_user(user):
 # Function to retrieve a user from a JSON file
 def retrieve_user(identifier):
     try:
-        with open('users.json', 'r') as file:
-            users = json.load(file)
-            for user_data in users:
-                if user_data['username'] == identifier or user_data['email'] == identifier:
-                    return User(
-                        username=user_data['username'], 
-                        password=user_data['password'],
-                        email =user_data['email']
-                    )
+        users = load_users()
+        for user_data in users:
+            if user_data['username'] == identifier or user_data['email'] == identifier:
+                return User(
+                    username=user_data['username'], 
+                    password=user_data['password'],
+                    email =user_data['email']
+                )
     except (FileNotFoundError, json.JSONDecodeError):
         pass
     return None
 
+#Checks if the given username exists in the user data.
+def username_exists(username):
+    users = load_users()
+    for user in users:
+        if user['username'] == username:
+            return True
+    return False
+
+#Checks if the given email exists in the user data.
+def email_exists(email):
+    users = load_users()
+    for user in users:
+        if user['email'] == email:
+            return True
+    return False
+
 # Flask route for user registration
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    username_error = None
+    email_error = None
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password'] 
         email = request.form['email'] 
+
+        if username_exists(username):
+            username_error = 'Username is already in use.'
+
+        if email_exists(email):
+            email_error = 'Email is already in use.'
+
+        if username_error or email_error:
+            return render_template('register.html', username_error=username_error, email_error=email_error)
 
         new_user = User(username, password, email)
         save_user(new_user)
@@ -312,11 +342,14 @@ def login():
         user = retrieve_user(identifier)
 
 
-        if user and user.password == password:
+        if user is None:
+            error = 'Username not found.'
+        elif user.password != password:
+            error = 'Incorrect password.'
+        else:
             session['username'] = user.username
             return redirect(url_for('home'))
-        else:
-            error = 'Invalid username or password.'
+
     return render_template('login.html' , error=error)
 
 # Flask route for user logout
@@ -324,24 +357,3 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
-
-# Flask route to check if an email exists
-@app.route('/check-email', methods=['POST'])
-def check_email():
-    email = request.json['email']
-    if retrieve_user(email):
-        return jsonify({"exists": True})
-    return jsonify({"exists": False})
-
-@app.route('/check-username', methods=['POST'])
-def check_username():
-    username = request.json['username']
-    if retrieve_user(username):
-        return jsonify({"exists": True})
-    return jsonify({"exists": False})
-
-
-
-
-
-
