@@ -27,7 +27,7 @@ Run the Flask Application:
   - Line number(s) for the class definition: 11 , 26
   - Name of two properties: id , image , name , username , password , email
   - Name of two methods:  calculate_cart_total , calculate_cart_quantity , clear_cart
-  - File name and line numbers where the methods are used: app.py 212 , 213 , 250
+  - File name and line numbers where the methods are used: app.py 212 , 213 , 251
 - [x] It makes use of JavaScript in the front end and uses the localStorage of the web browser.
 - [x] It uses modern JavaScript (for example, let and const rather than var).
 - [x] It makes use of the reading and writing to the same file feature.
