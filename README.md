@@ -23,22 +23,24 @@ Run the Flask Application:
   - Module name: - json module
                  - secrets module
 - [x] It contains at least one class written by you that has both properties and methods. It uses `__init__()` to let the class initialize the object's attributes (note that  `__init__()` doesn't count as a method). This includes instantiating the class and using the methods in your app. Please provide below the file name and the line number(s) of at least one example of a class definition in your code as well as the names of two properties and two methods.
-  - File name for the class definition: app.py
-  - Line number(s) for the class definition: 11 , 26
+  - File name for the class definition: models.py
+  - Line number(s) for the class definition: 4 , 18
   - Name of two properties: id , image , name , username , password , email
   - Name of two methods:  calculate_cart_total , calculate_cart_quantity , clear_cart
-  - File name and line numbers where the methods are used: app.py 212 , 213 , 251
+  - File name and line numbers where the methods are used: 
+         - product.py   13 , 145 , 146
+         - user.py 38
 - [x] It makes use of JavaScript in the front end and uses the localStorage of the web browser.
 - [x] It uses modern JavaScript (for example, let and const rather than var).
 - [x] It makes use of the reading and writing to the same file feature.
 - [x] It contains conditional statements. Please provide below the file name and the line number(s) of at least
   one example of a conditional statement in your code.
-  - File name: app.py
-  - Line number(s):  98 , 111  
+  - File name: product.py
+  - Line number(s):   11 , 26 , 31 , 44 
 - [x] It contains loops. Please provide below the file name and the line number(s) of at least
   one example of a loop in your code.
-  - File name: app.py
-  - Line number(s): 92 , 110 , 137
+  - File name: product.py
+  - Line number(s): 25 , 43 , 120
 - [x] It lets the user enter a value in a text box at some point.
   This value is received and processed by your back end Python code.
 - [x] It doesn't generate any error message even if the user enters a wrong input.
