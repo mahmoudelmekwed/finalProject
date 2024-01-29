@@ -71,7 +71,8 @@
                         </div>
                     </div>
                     <div class="cart-right">
-                        <p><span class="price">Price: {{ cart_item.price }}</span> USD</p>
+                        <p>Price per unit: {{cart_item.unit_price}} USD</p>
+                        <p><span class="price">Total price: {{ cart_item.price }}</span> USD</p>
                         <p>Quantity: {{ cart_item.quantity }}</p>
                         <!-- Form to remove item from cart -->
                         <form action="{{ url_for('remove_from_cart', product_id=cart_item['id']) }}" method="post">

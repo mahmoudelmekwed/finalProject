@@ -63,7 +63,8 @@
         <!-- Product description -->
         <p class="product-description">{{ product.description }}</p>
         <!-- Product price -->
-        <p><span class="product-price" id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span> USD</p>
+        <p>Price per unit: {{product.price}} USD</p>
+        <p>Total price: <span class="product-price" id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span> USD</p>
         <!-- Form to add product to cart -->
         <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="add-to-cart-form">
             <div class="quantity-selector">

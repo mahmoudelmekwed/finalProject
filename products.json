@@ -2,7 +2,7 @@
     
     {
         "id": 1,
-        "image":"/static/images/Product1.png",
+        "image":"/static/images/product1.png",
         "name": "Timeless Elegance",
         "price": 19.99,
         "description": "A watch brand that speaks to the connoisseur of classic style, Timeless Elegance offers sophisticated timepieces with a nod to historical craftsmanship and enduring design.",

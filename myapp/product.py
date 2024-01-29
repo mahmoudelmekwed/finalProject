@@ -86,7 +86,8 @@ def init_product_routes(app):
                 user_cart['items'].append({
                     'id': product.id, 
                     'name': product.name,
-                    'image': product.image , 
+                    'image': product.image ,
+                    'unit_price': product.price, 
                     'price': product.total_price(),
                     'description' : product.description, 
                     'quantity': selected_quantity

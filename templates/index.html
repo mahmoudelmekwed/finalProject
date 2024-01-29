@@ -66,6 +66,7 @@
                     </a>
                     <h2>{{ product.name }}</h2>
                     <!-- Display product price -->
+                    <p>Price per unit: {{product.price}} USD</p>
                     <p class="price">Total price: <span id="price-{{ product.id }}" data-price-per-unit="{{ product.price }}">{{ product.price }}</span> USD</p>
                     <!-- Form to add product to cart -->
                     <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
