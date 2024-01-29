@@ -53,9 +53,7 @@ def init_user_routes(app):
         # If there are errors, redirect back to checkout page with errors
             print(errors)
             return render_template('checkout.html', errors=errors)
-
-        # If validation passes, you can proceed with the checkout process
-        # For example, redirect to a confirmation route or handle the process here
+        
         return redirect(url_for('confirmation'))
 
 
