@@ -1,4 +1,4 @@
-import json
+import json , re
 from myapp.models import Product , User
 
 def load_users():
@@ -7,9 +7,8 @@ def load_users():
 
 # Load products from a JSON file
 def load_products(filename):
-    file = open(filename, 'r')
-    products_data = json.load(file)
-    file.close()
+    with open(filename, 'r') as file:
+            products_data = json.load(file)
     products = []
     for p in products_data:
         product = Product(p['id'], p['image'], p['name'], p['price'], p['description'], p['quantity'])
@@ -71,3 +70,25 @@ def email_exists(email):
         if user['email'] == email:
             return True
     return False
+
+# Validation functions for checkout page
+def is_valid_name(name):
+    return len(name) > 0 and len(name) < 100 and all(char.isalpha() or char.isspace() for char in name)
+
+def is_valid_address(address):
+    return len(address) > 0
+
+def is_valid_telephone(telephone):
+    return bool(re.match(r'^[+\d\s-]{7,15}$', telephone))
+
+def is_valid_card_number(card_number):
+    print(f"Validating card number: {card_number}")
+    return bool(re.match(r'^\d{13,19}$', card_number))
+
+def is_valid_expiry_date(expiry_date):
+    print(f"Validating expiry date: {expiry_date}")
+    return bool(re.match(r'^\d{2}/\d{2}$', expiry_date))
+
+def is_valid_cvc(cvc):
+    print(f"Validating cvc: {cvc}")
+    return bool(re.match(r'^\d{3}$', cvc))

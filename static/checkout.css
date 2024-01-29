@@ -253,7 +253,7 @@ span.error-message {
 }
 
 /* Styling for form labels field within the billing section */
-.billing-section form label{
+.billing-section label{
   display: block;
   margin-bottom: 10px;
   margin-left: auto;
@@ -262,7 +262,7 @@ span.error-message {
 }
 
 /* Styling for input fields within the billing section */
-.billing-section form input {
+.billing-section input {
   padding: 7px;
   width: 350px;
   border-radius: 4px;
@@ -289,12 +289,18 @@ span.error-message {
 
 /* Styling for radio buttons */
 input[type="radio"] {
-  margin-right: 10px;
+  margin-left: -139px;
+}
+
+label[for="new_card"] {
+  position: relative;
+  top: -25px;
+  left: -132px;
 }
 
 /* Styling for individual payment methods */
 .payment-method {
-  margin-bottom: 15px;
+  margin-bottom: -35px;
 }
 
 /* Styling for inline elements */
@@ -305,7 +311,7 @@ input[type="radio"] {
 
 /* Styling for card details section */
 .card-details {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 20px 50px;
   border-radius: 4px;
   display: none;

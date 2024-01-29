@@ -54,36 +54,35 @@
     </div>
 </header>
   <!-- Main checkout container -->
+  <form action="{{ url_for('validate_checkout') }}" method="post">
   <div class="checkout-container">
       <h2>Checkout</h2>
       <!-- Billing and payment section -->
       <div class="checkout-row">
           <div class="billing-section">
               <!-- Form for billing information -->
-              <form>
                   <div>
                       <label for="name">Name:</label>
                       <input type="text" id="name" name="name" required>
-                      <span class="error-message" id="name-error"></span>
+                      <span class="error-message" id="name-error">{{ errors.get('name', '') }}</span>
                   </div>
                   <div>
                   <label for="address">Address:</label>
                   <input type="text" id="address" name="address" required>
-                  <span class="error-message" id="address-error"></span>
+                  <span class="error-message" id="address-error">{{ errors.get('address', '') }}</span>
                   </div>
                   <div>
                   <label for="telephone">Telephone:</label>
                   <input type="tel" id="telephone" name="telephone" required>
-                  <span class="error-message" id="telephone-error"></span>
+                  <span class="error-message" id="telephone-error">{{ errors.get('telephone', '') }}</span>
                   </div>
-              </form>
               <!-- Payment methods section -->
               <div class="payment-methods">
                   <h3>Payment method</h3>
                   <!-- Radio button for card payment option -->
                   <div class="payment-method">
                     <input type="radio" id="new_card" name="payment" value="new_card">
-                    <label for="new_card">Credit/Debit Card</label>
+                    <label for="new_card" class="radio-label">Credit/Debit Card</label>
                     <!-- Card details input fields -->
                     <div class="card-details">
                       <div class="field">
@@ -92,19 +91,19 @@
                       </div>
                       <div class="field">
                         <label for="card_number">Card number</label>
-                        <input type="text" id="card_number" placeholder="1234 5678 9012 3456" minlength="16" maxlength="16" required>
-                        <span class="error-message" id="card_number-error"></span>
+                        <input type="text" id="card_number" placeholder="1234 5678 9012 3456" name="card_number"  minlength="16" maxlength="16" required>
+                        <span class="error-message" id="card_number-error">{{ errors.get('card_number', '') }}</span>
                       </div>
                       <div class="field-group">
                         <div class="field expiry">
                           <label for="expiry_date">Expiry date</label>
-                          <input type="text" id="expiry_date" placeholder="MM/YY" required>
-                          <span class="error-message" id="expiry_date-error"></span>
+                          <input type="text" id="expiry_date" placeholder="MM/YY" name="expiry_date" required>
+                          <span class="error-message" id="expiry_date-error">{{ errors.get('expiry_date', '') }}</span>
                         </div>
                         <div class="field cvc">
                           <label for="cvc">CVC/CVV</label>
-                          <input type="text" id="cvc" placeholder="CVC" required>
-                          <span class="error-message" id="cvc-error"></span>
+                          <input type="text" id="cvc" placeholder="CVC" name="cvc" maxlength="3" required>
+                          <span class="error-message" id="cvc-error">{{ errors.get('cvc', '') }}</span>
                         </div>
                       </div>
                     </div>
@@ -117,14 +116,14 @@
         <!-- Display total price -->
         <p>Total: <span id="total-price">{{ total_price }}</span> USD</p>
         <!-- Form to complete checkout -->
-        <form action="{{ url_for('confirmation') }}" method="post">
+
             <button class="complete-checkout" id="confirm">Complete Checkout</button>
-        </form>
+        
         <!-- Additional information -->
         <p>30-Day Money-Back Guarantee</p>
       </div>
       </div>
-    </div>
+    </form>
     <!-- JavaScript files for functionality -->
     <script src="/static/checkout.js"></script>
     <script src="/static/main.js"></script>

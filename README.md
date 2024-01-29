@@ -11,7 +11,7 @@ Clone the Repository:
 Navigate to the Project Directory:
     cd finalProject
 Install Python Dependencies:
-    pip install -r requirements.txt
+    pip install Flask
 Run the Flask Application:
     flask --app app.py run
 

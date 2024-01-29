@@ -1,12 +1,12 @@
 from flask import session , redirect , url_for , render_template , request
 from myapp.models import User
-from myapp.utilities import save_user, retrieve_user, username_exists, email_exists , save_products
+from myapp.utilities import save_user, retrieve_user, username_exists, email_exists , save_products , is_valid_name , is_valid_address , is_valid_telephone , is_valid_card_number , is_valid_expiry_date , is_valid_cvc
 
 
 def init_user_routes(app):
 
     # Flask route to handle the checkout process
-    @app.route('/checkout' , methods=['POST'])
+    @app.route('/checkout' , methods=['GET', 'POST'])
     def checkout():
         if 'username' not in session:
             return redirect(url_for('login'))
@@ -14,15 +14,53 @@ def init_user_routes(app):
         user = retrieve_user(session['username'])
 
         if not user:
-            return redirect(url_for('login'))    
+            return redirect(url_for('login'))
+
+        total_price = session.get('total_price', 0)
+        total_quantity = session.get('total_quantity', 0)
+        return render_template('checkout.html', errors={}, total_price=total_price, total_quantity=total_quantity)
+    
+
+    @app.route('/validate_checkout', methods=['POST'])
+    def validate_checkout():
+
         
-        total_price = session.get('total_price' , 0)
-        total_quantity = session.get('total_quantity' , 0)
-        return render_template('checkout.html' , total_price = total_price , total_quantity = total_quantity)
+        # Extract from data
+        name = request.form.get('name' , '')
+        address = request.form.get('address' , '')
+        telephone = request.form.get('telephone' , '')
+        card_number = request.form.get('card_number' , '')
+        expiry_date = request.form.get('expiry_date' , '')
+        cvc = request.form.get('cvc' , '')
+
+        # Perform validations
+        errors = {}
+        if not is_valid_name(name):
+            errors['name'] = "Invalid name"
+        if not is_valid_address(address):
+            errors['address'] = "Invalid address"
+        if not is_valid_telephone(telephone):
+            errors['telephone'] = "Invalid telephone"
+        if not is_valid_card_number(card_number):
+            errors['card_number'] = "Invalid card number"
+        if not is_valid_expiry_date(expiry_date):
+            errors['expiry_date'] = "Invalid expiry date"
+        if not is_valid_cvc(cvc):
+            errors['cvc'] = "Invalid cvc" 
+
+        
+        if errors:
+        # If there are errors, redirect back to checkout page with errors
+            print(errors)
+            return render_template('checkout.html', errors=errors)
+
+        # If validation passes, you can proceed with the checkout process
+        # For example, redirect to a confirmation route or handle the process here
+        return redirect(url_for('confirmation'))
 
 
     # Flask route for order confirmation
-    @app.route('/confirmation', methods=['POST'])
+    @app.route('/confirmation', methods=['GET'])
     def confirmation():
         if 'username' not in session:
             return redirect(url_for('login'))
@@ -89,3 +127,5 @@ def init_user_routes(app):
     def logout():
         session.pop('username', None)
         return redirect(url_for('home'))
+    
+
