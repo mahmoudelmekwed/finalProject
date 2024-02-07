@@ -125,5 +125,3 @@ def init_user_routes(app):
     def logout():
         session.pop('username', None)
         return redirect(url_for('home'))
-    
-

@@ -33,8 +33,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dropdownMenu.addEventListener('click', ()=> toggleMenu.classList.toggle('opened'));
 });
-
-
-
-
-

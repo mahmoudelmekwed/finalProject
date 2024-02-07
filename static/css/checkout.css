@@ -277,6 +277,7 @@ span.error-message {
   font-family: Arial, sans-serif;
   margin: auto;
   overflow: hidden;
+  text-align: center;
 }
 
 /* Styling for payment method headings */
@@ -284,29 +285,8 @@ span.error-message {
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   margin-bottom: 20px;
-  margin-top: 40px;
-}
-
-/* Styling for radio buttons */
-input[type="radio"] {
-  margin-left: -139px;
-}
-
-label[for="new_card"] {
-  position: relative;
-  top: -25px;
-  left: -132px;
-}
-
-/* Styling for individual payment methods */
-.payment-method {
-  margin-bottom: -35px;
-}
-
-/* Styling for inline elements */
-.inline-element {
-  display: inline-block;
-  vertical-align: middle;
+  margin-top: 20px;
+  text-align: center;
 }
 
 /* Styling for card details section */
@@ -314,7 +294,6 @@ label[for="new_card"] {
   margin-top: 10px;
   padding: 20px 50px;
   border-radius: 4px;
-  display: none;
 }
 
 /* Styling for form fields within card details section */
@@ -355,14 +334,6 @@ label[for="new_card"] {
   margin-top: 10px;
 }
 
-input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-input[type="radio"]:checked + label + .card-details {
-  display: block;
-}
-
 /* Styling for the summary section */
 .summary-section {
   width: 35%;
@@ -385,6 +356,10 @@ input[type="radio"]:checked + label + .card-details {
 /* Styling for the total price element */
 #total-price {
   color: #000;
+}
+
+#confirm:disabled{
+  background-color: #444;
 }
 
 /* Styling for the complete checkout button */

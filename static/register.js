@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('registerForm').addEventListener('submit', function(event) {
         if (!validatePassword()) {
